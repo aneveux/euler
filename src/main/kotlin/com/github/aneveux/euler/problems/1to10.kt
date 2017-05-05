@@ -120,3 +120,13 @@ class Problem9 : Problem() {
         a + b + c == 1_000 && Tuple3(a, b, c).isPythagoreanTriplet()
     }.map { (a, b, c) -> a * b * c }.first().toString()
 }
+
+/**
+ * Solving [https://projecteuler.net/problem=10]
+ *
+ * > Find the sum of all the primes below two million.
+ *
+ */
+class Problem10: Problem() {
+    override fun solve() = 2_000_000L.sumBelowPrimes().toString()
+}

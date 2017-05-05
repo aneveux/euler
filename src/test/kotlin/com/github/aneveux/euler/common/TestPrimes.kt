@@ -16,4 +16,9 @@ class TestPrimes {
         assertThat(13195L.primeFactors()).containsExactly(5, 7, 13, 29)
     }
 
+    @Test
+    fun testPrimesSum() {
+        assertThat(10L.sumBelowPrimes()).isEqualTo(17)
+    }
+
 }

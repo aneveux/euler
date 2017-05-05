@@ -14,3 +14,5 @@ fun Number.primeFactors(): List<Long> =
             if (nextPrimeFactor == null) emptyList()
             else listOf(nextPrimeFactor) + (this.toLong() / nextPrimeFactor).primeFactors()
         }
+
+fun Long.sumBelowPrimes() = primes.takeWhile { it < this.toBigInteger() }.sum().toLong()
