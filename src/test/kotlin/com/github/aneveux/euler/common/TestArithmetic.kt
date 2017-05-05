@@ -1,5 +1,6 @@
 package com.github.aneveux.euler.common
 
+import javaslang.Tuple3
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
@@ -31,6 +32,12 @@ class TestArithmetic {
     @Test
     fun testSquareSum() {
         assertThat((1..10).squareSum()).isEqualTo(3025)
+    }
+
+    @Test
+    fun testPythagoreanTriplet() {
+        assertThat(Tuple3(3, 4, 5).isPythagoreanTriplet()).isTrue()
+        assertThat(Tuple3(3, 4, 6).isPythagoreanTriplet()).isFalse()
     }
 
 }
