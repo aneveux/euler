@@ -2,7 +2,7 @@ package com.github.aneveux.euler.common
 
 import java.math.BigInteger
 
-fun Number.toBigInteger() = BigInteger.valueOf(this.toLong())
+fun Number.toBigInteger(): BigInteger = BigInteger.valueOf(this.toLong())
 
 fun Char.toIntValue(): Int =
         if (this !in '0'..'9')

@@ -1,6 +1,10 @@
 package com.github.aneveux.euler.common
 
+import javaslang.collection.Stream
+import java.math.BigInteger
 import kotlin.coroutines.experimental.buildSequence
+
+val primes: Stream<BigInteger> = Stream.iterate(BigInteger("2")) { it.nextProbablePrime() }
 
 val fibonacci = buildSequence {
     var a = 0

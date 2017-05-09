@@ -1,18 +1,16 @@
 package com.github.aneveux.euler.common
 
-import javaslang.collection.Stream.iterate
-import java.math.BigInteger
+fun Number.isPrime() = with(this.toLong()) {
+    this > 1 && (2..this.sqrtRange()).all { !(this isMultipleOf it) }
+}
 
-val primes = iterate(BigInteger("2")) { it.nextProbablePrime() }
-
-fun Number.isPrime() = this.toLong() > 1L && (2L..(this.toLong() / 2L)).all { this.toLong() % it != 0L }
-
-fun Number.primeFactors(): List<Long> =
-        if (this.isPrime()) listOf(this.toLong())
-        else {
-            val nextPrimeFactor = (2L..(this.toLong() / 2L)).find { this.toLong() % it == 0L && it.isPrime() }
-            if (nextPrimeFactor == null) emptyList()
-            else listOf(nextPrimeFactor) + (this.toLong() / nextPrimeFactor).primeFactors()
-        }
+fun Number.primeFactors(): List<Long> = with(this.toLong()) {
+    if (isPrime()) listOf(this)
+    else {
+        val nextPrimeFactor = (2..this.sqrtRange()).find { this isMultipleOf it && it.isPrime() }
+        if (nextPrimeFactor == null) emptyList()
+        else listOf(nextPrimeFactor) + (this / nextPrimeFactor).primeFactors()
+    }
+}
 
 fun Long.sumBelowPrimes() = primes.takeWhile { it < this.toBigInteger() }.sum().toLong()
