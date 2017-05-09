@@ -22,4 +22,8 @@ fun IntRange.squareSum() = this.sum().let { it * it }
 
 fun Tuple3<Int, Int, Int>.isPythagoreanTriplet() = this._1.square() + this._2.square() == this._3.square()
 
-fun Number.numberOfDivisors() = TODO()
+fun Number.numberOfDivisors() = with(this.primeFactors()) {
+    distinct().fold(1) { n, prime ->
+        n * (this.count { it == prime } + 1)
+    }
+}

@@ -17,6 +17,6 @@ class TestProblem12 {
 
     @Test
     fun testProblem12Solution() {
-        assertThat(problem.solve()).isEqualTo(0.toString())
+        assertThat(problem.solve()).isEqualTo(76576500.toString())
     }
 }
