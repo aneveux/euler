@@ -40,4 +40,9 @@ class TestArithmetic {
         assertThat(Tuple3(3, 4, 6).isPythagoreanTriplet()).isFalse()
     }
 
+    @Test
+    fun testDivisors() {
+        assertThat(28L.numberOfDivisors()).isEqualTo(6)
+    }
+
 }

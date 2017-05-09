@@ -16,3 +16,13 @@ val fibonacci = buildSequence {
         b = tmp
     }
 }
+
+val triangles = buildSequence {
+    var index = 1
+    var current = 0
+    while (true) {
+        yield(current + index)
+
+        current += index++
+    }
+}

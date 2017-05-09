@@ -1,6 +1,8 @@
 package com.github.aneveux.euler.problems
 
 import com.github.aneveux.euler.Problem
+import com.github.aneveux.euler.common.numberOfDivisors
+import com.github.aneveux.euler.common.triangles
 import javaslang.collection.Stream
 
 /**
@@ -42,4 +44,14 @@ class Problem11 : Problem() {
             )
         }
     }.map { it.product() }.max().get().toString()
+}
+
+/**
+ * Solving [https://projecteuler.net/problem=12]
+ *
+ * > What is the value of the first triangle number to have over five hundred divisors?
+ *
+ */
+class Problem12 : Problem() {
+    override fun solve() = triangles.dropWhile { it.numberOfDivisors() <= 500 }.first().toString()
 }

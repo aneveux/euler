@@ -10,4 +10,9 @@ class TestSequences {
         assertThat(fibonacci.take(10).iterator()).containsExactly(1, 1, 2, 3, 5, 8, 13, 21, 34, 55)
     }
 
+    @Test
+    fun testTrianglesExample() {
+        assertThat(triangles.take(7).toList()).containsExactly(1,3,6,10,15,21,28)
+    }
+
 }
