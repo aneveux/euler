@@ -1,6 +1,7 @@
 package com.github.aneveux.euler.problems
 
 import com.github.aneveux.euler.Problem
+import com.github.aneveux.euler.common.collatzSequence
 import com.github.aneveux.euler.common.numberOfDivisors
 import com.github.aneveux.euler.common.triangles
 import javaslang.collection.Stream
@@ -170,4 +171,15 @@ class Problem13 : Problem() {
     override fun solve() = numbers.map { BigInteger(it) }.fold(BigInteger.ZERO) { sum, current ->
         sum + current
     }.toString().take(10)
+}
+
+/**
+ * Solving [https://projecteuler.net/problem=14]
+ *
+ * > Which starting number, under one million, produces the longest chain?
+ *
+ */
+class Problem14 : Problem() {
+    override fun solve() = Stream.range(1,
+                                        1_000_000).map(Int::collatzSequence).map { it.count() }.max().get().toString()
 }

@@ -30,3 +30,15 @@ val triangles = buildSequence {
         current += index++
     }
 }
+
+fun Int.collatzSequence() = buildSequence {
+    var current = this@collatzSequence
+    while (current != 1) {
+        yield(current)
+        current = when {
+            current.isEven() -> current / 2
+            else -> 3 * current + 1
+        }
+    }
+    yield(1)
+}

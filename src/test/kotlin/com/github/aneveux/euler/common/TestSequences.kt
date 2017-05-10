@@ -12,7 +12,12 @@ class TestSequences {
 
     @Test
     fun testTrianglesExample() {
-        assertThat(triangles.take(7).toList()).containsExactly(1,3,6,10,15,21,28)
+        assertThat(triangles.take(7).toList()).containsExactly(1, 3, 6, 10, 15, 21, 28)
+    }
+
+    @Test
+    fun testCollatzSequenceExample() {
+        assertThat(13.collatzSequence().toList()).containsExactly(13, 40, 20, 10, 5, 16, 8, 4, 2, 1)
     }
 
 }
