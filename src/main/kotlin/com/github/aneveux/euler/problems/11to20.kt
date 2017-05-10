@@ -180,6 +180,25 @@ class Problem13 : Problem() {
  *
  */
 class Problem14 : Problem() {
-    override fun solve() = Stream.range(1,
-                                        1_000_000).map(Int::collatzSequence).map { it.count() }.max().get().toString()
+
+    fun collatzLength(limit: Int): Map<Int, Int> {
+        val buffer = mutableMapOf<Int, Int>()
+        Stream.range(1, limit).forEach { index ->
+            buffer.getOrPut(index) {
+                index.collatzSequence().partition { !buffer.contains(it) }.let { (unknowns, knowns) ->
+                    if (knowns.size > 0)
+                        unknowns.size + buffer.getOrDefault(knowns.first(), 0)
+                    else
+                        unknowns.size
+                }
+            }
+        }
+        return buffer
+    }
+
+    override fun solve() = with(collatzLength(1_000_000)) {
+        entries.find { (_, distance) ->
+            distance == values.max()
+        }?.key.toString()
+    }
 }
