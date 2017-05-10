@@ -20,3 +20,12 @@ class TestProblem12 {
         assertThat(problem.solve()).isEqualTo(76576500.toString())
     }
 }
+
+class TestProblem13 {
+    val problem = Problem13()
+
+    @Test
+    fun testProblem13Solution() {
+        assertThat(problem.solve()).isEqualTo(5537376230.toString())
+    }
+}
