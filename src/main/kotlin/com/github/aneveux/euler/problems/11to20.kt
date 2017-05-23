@@ -181,24 +181,7 @@ class Problem13 : Problem() {
  */
 class Problem14 : Problem() {
 
-    fun collatzLength(limit: Int): Map<Int, Int> {
-        val buffer = mutableMapOf<Int, Int>()
-        Stream.range(1, limit).forEach { index ->
-            buffer.getOrPut(index) {
-                index.collatzSequence().partition { !buffer.contains(it) }.let { (unknowns, knowns) ->
-                    if (knowns.size > 0)
-                        unknowns.size + buffer.getOrDefault(knowns.first(), 0)
-                    else
-                        unknowns.size
-                }
-            }
-        }
-        return buffer
-    }
-
-    override fun solve() = with(collatzLength(1_000_000)) {
-        entries.find { (_, distance) ->
-            distance == values.max()
-        }?.key.toString()
-    }
+    override fun solve() = Stream.range(2, 1_000_000).map { index ->
+        index to index.toLong().collatzSequence().count()
+    }.maxBy { o1, o2 -> o1.second - o2.second }.get().first.toString()
 }

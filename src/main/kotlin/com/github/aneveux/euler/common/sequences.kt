@@ -31,14 +31,17 @@ val triangles = buildSequence {
     }
 }
 
-fun Int.collatzSequence() = buildSequence {
+fun Long.collatzSequence() = buildSequence {
     var current = this@collatzSequence
-    while (current != 1) {
+    while (current != 1L) {
         yield(current)
-        current = when {
-            current.isEven() -> current / 2
-            else -> 3 * current + 1
-        }
+        current = current.nextCollatz()
     }
     yield(1)
+}
+
+fun Long.nextCollatz() = when {
+    this == 1L -> 1L
+    this.isEven() -> this / 2
+    else -> 3 * this + 1
 }

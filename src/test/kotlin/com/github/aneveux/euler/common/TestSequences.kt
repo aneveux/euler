@@ -17,7 +17,7 @@ class TestSequences {
 
     @Test
     fun testCollatzSequenceExample() {
-        assertThat(13.collatzSequence().toList()).containsExactly(13, 40, 20, 10, 5, 16, 8, 4, 2, 1)
+        assertThat(13L.collatzSequence().toList()).containsExactly(13, 40, 20, 10, 5, 16, 8, 4, 2, 1)
     }
 
 }
