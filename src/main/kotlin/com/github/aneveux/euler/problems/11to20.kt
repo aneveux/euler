@@ -5,6 +5,8 @@ import com.github.aneveux.euler.common.collatzSequence
 import com.github.aneveux.euler.common.numberOfDivisors
 import com.github.aneveux.euler.common.triangles
 import javaslang.collection.Stream
+import org.apache.commons.math3.util.ArithmeticUtils
+import org.apache.commons.math3.util.CombinatoricsUtils
 import java.math.BigInteger
 
 /**
@@ -184,4 +186,15 @@ class Problem14 : Problem() {
     override fun solve() = Stream.range(2, 1_000_000).map { index ->
         index to index.toLong().collatzSequence().count()
     }.maxBy { o1, o2 -> o1.second - o2.second }.get().first.toString()
+}
+
+/**
+ * Solving [https://projecteuler.net/problem=15]
+ *
+ * > How many such routes are there through a 20×20 grid?
+ *
+ */
+class Problem15: Problem() {
+    // reference: https://en.wikipedia.org/wiki/Lattice_path
+    override fun solve() = CombinatoricsUtils.binomialCoefficient(40,20).toString()
 }
