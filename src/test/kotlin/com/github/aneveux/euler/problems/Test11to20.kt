@@ -43,6 +43,11 @@ class TestProblem15 {
     val problem = Problem15()
 
     @Test
+    fun testLatticePathExample() {
+        assertThat(problem.latticePath(2,2)).isEqualTo(6)
+    }
+
+    @Test
     fun testProblem15Solution() {
         assertThat(problem.solve()).isEqualTo(137846528820.toString())
     }

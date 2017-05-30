@@ -5,7 +5,6 @@ import com.github.aneveux.euler.common.collatzSequence
 import com.github.aneveux.euler.common.numberOfDivisors
 import com.github.aneveux.euler.common.triangles
 import javaslang.collection.Stream
-import org.apache.commons.math3.util.ArithmeticUtils
 import org.apache.commons.math3.util.CombinatoricsUtils
 import java.math.BigInteger
 
@@ -194,7 +193,9 @@ class Problem14 : Problem() {
  * > How many such routes are there through a 20×20 grid?
  *
  */
-class Problem15: Problem() {
+class Problem15 : Problem() {
     // reference: https://en.wikipedia.org/wiki/Lattice_path
-    override fun solve() = CombinatoricsUtils.binomialCoefficient(40,20).toString()
+    fun latticePath(width: Int, height: Int) = CombinatoricsUtils.binomialCoefficient(width + height, width)
+
+    override fun solve() = latticePath(20, 20).toString()
 }
