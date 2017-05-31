@@ -35,3 +35,5 @@ fun Number.numberOfDivisors() = with(this.primeFactors()) {
         n * (this.count { it == prime } + 1)
     }
 }
+
+fun Long.pow(p: Long) = Math.pow(this.toDouble(), p.toDouble()).toLong()

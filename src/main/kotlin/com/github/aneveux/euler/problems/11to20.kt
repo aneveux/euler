@@ -1,9 +1,7 @@
 package com.github.aneveux.euler.problems
 
 import com.github.aneveux.euler.Problem
-import com.github.aneveux.euler.common.collatzSequence
-import com.github.aneveux.euler.common.numberOfDivisors
-import com.github.aneveux.euler.common.triangles
+import com.github.aneveux.euler.common.*
 import javaslang.collection.Stream
 import org.apache.commons.math3.util.CombinatoricsUtils
 import java.math.BigInteger
@@ -198,4 +196,16 @@ class Problem15 : Problem() {
     fun latticePath(width: Int, height: Int) = CombinatoricsUtils.binomialCoefficient(width + height, width)
 
     override fun solve() = latticePath(20, 20).toString()
+}
+
+/**
+ * Solving [https://projecteuler.net/problem=16]
+ *
+ * > What is the sum of the digits of the number 21000?
+ *
+ */
+class Problem16 : Problem() {
+    fun sumDigits(n: BigInteger) = n.toString().toCharArray().map { it.toIntValue() }.sum()
+
+    override fun solve() = sumDigits(2.toBigInteger().pow(1_000)).toString()
 }
