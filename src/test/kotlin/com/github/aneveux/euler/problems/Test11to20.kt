@@ -1,6 +1,5 @@
 package com.github.aneveux.euler.problems
 
-import com.github.aneveux.euler.common.pow
 import com.github.aneveux.euler.common.toBigInteger
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
@@ -66,5 +65,19 @@ class TestProblem16 {
     @Test
     fun testProblem16Solution() {
         assertThat(problem.solve()).isEqualTo(1366.toString())
+    }
+}
+
+class TestProblem17 {
+    val problem = Problem17()
+
+    @Test
+    fun testProblem17Example() {
+        assertThat(problem.numberLettersCount(1..5)).isEqualTo(19)
+    }
+
+    @Test
+    fun testProblem17Solution() {
+        assertThat(problem.solve()).isEqualTo(21124.toString())
     }
 }

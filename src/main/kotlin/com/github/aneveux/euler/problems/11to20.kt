@@ -2,6 +2,7 @@ package com.github.aneveux.euler.problems
 
 import com.github.aneveux.euler.Problem
 import com.github.aneveux.euler.common.*
+import com.github.aneveux.euler.tools.toEnglish
 import javaslang.collection.Stream
 import org.apache.commons.math3.util.CombinatoricsUtils
 import java.math.BigInteger
@@ -208,4 +209,17 @@ class Problem16 : Problem() {
     fun sumDigits(n: BigInteger) = n.toString().toCharArray().map { it.toIntValue() }.sum()
 
     override fun solve() = sumDigits(2.toBigInteger().pow(1_000)).toString()
+}
+
+/**
+ * Solving [https://projecteuler.net/problem=17]
+ *
+ * > If all the numbers from 1 to 1000 (one thousand) inclusive were written out in words, how many letters would be used?
+ *
+ */
+class Problem17 : Problem() {
+    fun numberLettersCount(n: Int) = n.toEnglish().filter(Char::isLetter).count()
+    fun numberLettersCount(r: IntRange) = r.map { numberLettersCount(it) }.sum()
+
+    override fun solve() = numberLettersCount(1..1_000).toString()
 }
