@@ -7,6 +7,12 @@ import javaslang.collection.Stream
 import org.apache.commons.math3.util.CombinatoricsUtils
 import org.funktionale.collections.tail
 import java.math.BigInteger
+import java.time.DayOfWeek
+import java.time.LocalDate
+import java.time.Month
+import java.time.YearMonth
+import java.time.temporal.TemporalAdjusters
+import java.util.*
 
 /**
  * Solving [https://projecteuler.net/problem=11]
@@ -263,4 +269,34 @@ class Problem18 : Problem() {
     val maxTotal = triangle.asReversed().tail().asSequence().fold(triangle.last(), accumulateSum).first()
 
     override fun solve() = maxTotal.toString()
+}
+
+/**
+ * Solving [https://projecteuler.net/problem=19]
+ *
+ * > How many Sundays fell on the first of the month during the twentieth century (1 Jan 1901 to 31 Dec 2000)?
+ *
+ */
+class Problem19 : Problem() {
+    val from: LocalDate = LocalDate.of(1901, Month.JANUARY, 1)
+    val to: LocalDate = LocalDate.of(2000, Month.DECEMBER, 31)
+
+    fun countFirstSundays(from: LocalDate, to: LocalDate): Int {
+        tailrec fun _countFirstSundays(acc: Int, current: LocalDate): Int =
+                if (current.isAfter(to))
+                    acc
+                else
+                    _countFirstSundays((if (current.dayOfWeek == DayOfWeek.SUNDAY) 1 else 0) + acc,
+                                       current.with(TemporalAdjusters.firstDayOfNextMonth()))
+
+        return _countFirstSundays(0, from)
+    }
+
+    // Can't decide which implementation I prefer...
+    fun countFirstSundays2() = (1901..2000).asSequence()
+            .flatMap { y -> Month.values().asSequence().map { m -> YearMonth.of(y, m) } }
+            .filter { it.atDay(1).dayOfWeek.equals(Calendar.SUNDAY) }
+            .count()
+
+    override fun solve() = countFirstSundays(from, to).toString()
 }
