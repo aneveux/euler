@@ -5,6 +5,7 @@ import com.github.aneveux.euler.common.*
 import com.github.aneveux.euler.tools.toEnglish
 import javaslang.collection.Stream
 import org.apache.commons.math3.util.CombinatoricsUtils
+import org.funktionale.collections.tail
 import java.math.BigInteger
 
 /**
@@ -222,4 +223,44 @@ class Problem17 : Problem() {
     fun numberLettersCount(r: IntRange) = r.map { numberLettersCount(it) }.sum()
 
     override fun solve() = numberLettersCount(1..1_000).toString()
+}
+
+/**
+ * Solving [https://projecteuler.net/problem=18]
+ *
+ * > Find the maximum total from top to bottom of the triangle below
+ *
+ */
+class Problem18 : Problem() {
+
+    val input = """
+            75
+            95 64
+            17 47 82
+            18 35 87 10
+            20 04 82 47 65
+            19 01 23 75 03 34
+            88 02 77 73 07 63 67
+            99 65 04 28 06 16 70 92
+            41 41 26 56 83 40 80 70 33
+            41 48 72 33 47 32 37 16 94 29
+            53 71 44 65 25 43 91 52 97 51 14
+            70 11 33 28 77 73 17 78 39 68 17 57
+            91 71 52 38 17 14 91 43 58 50 27 29 48
+            63 66 04 68 89 53 67 30 73 16 69 87 40 31
+            04 62 98 27 23 09 70 98 73 93 38 53 60 04 23"""
+
+    val triangle = input.trim().lines().map { it.trim().split(" ").map(String::toInt) }
+
+    fun maxByIndex(a: List<Int>, b: List<Int>) = a.zip(b).map { (i, j) -> maxOf(i, j) }
+
+    val accumulateSum = { acc: List<Int>, next: List<Int> ->
+        val s1 = next.zip(acc).map { (i, j) -> i + j }
+        val s2 = next.zip(acc.drop(1)).map { (i, j) -> i + j }
+        maxByIndex(s1, s2)
+    }
+
+    val maxTotal = triangle.asReversed().tail().asSequence().fold(triangle.last(), accumulateSum).first()
+
+    override fun solve() = maxTotal.toString()
 }
