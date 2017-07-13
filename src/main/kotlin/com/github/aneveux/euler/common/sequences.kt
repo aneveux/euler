@@ -37,7 +37,7 @@ fun Long.collatzSequence() = buildSequence {
         yield(current)
         current = current.nextCollatz()
     }
-    yield(1)
+    yield(1L)
 }
 
 fun Long.nextCollatz() = when {
