@@ -17,7 +17,7 @@ fun Number.square() = with(this.toLong()) {
     this * this
 }
 
-fun Number.sqrt() = Math.sqrt(this.toDouble()).toLong()
+fun Number.sqrtRange() = Math.sqrt(this.toDouble()).toLong()
 
 fun LongRange.products(with: LongRange) = this.flatMap { a -> with.map { b -> a * b } }
 
