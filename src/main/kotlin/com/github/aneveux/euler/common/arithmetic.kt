@@ -17,7 +17,7 @@ fun Number.square() = with(this.toLong()) {
     this * this
 }
 
-fun Number.sqrtRange() = Math.sqrt(this.toDouble()).toLong()
+fun Number.sqrt() = Math.sqrt(this.toDouble()).toLong()
 
 fun LongRange.products(with: LongRange) = this.flatMap { a -> with.map { b -> a * b } }
 
@@ -43,3 +43,12 @@ tailrec fun BigInteger.factorial(product: BigInteger = BigInteger.ONE): BigInteg
         else (this - BigInteger.ONE).factorial(product.multiply(this))
 
 fun sumDigits(n: BigInteger) = n.toString().toCharArray().map { it.toIntValue() }.sum()
+
+fun Long.properDivisors() = (1..(this / 2)).filter { this isMultipleOf it }
+
+fun Long.amicablePair(): Long? {
+    val sum = this.properDivisors().sum()
+    if (sum != this && sum.properDivisors().sum() == this)
+        return sum
+    else return null
+}

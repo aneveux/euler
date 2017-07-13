@@ -55,4 +55,18 @@ class TestArithmetic {
         assertThat(sumDigits(1234.toBigInteger())).isEqualTo(10)
     }
 
+    @Test
+    fun testProperDivisors() {
+        assertThat(220L.properDivisors()).containsExactly(1L, 2L, 4L, 5L, 10L, 11L, 20L, 22L, 44L, 55L, 110L)
+        assertThat(284L.properDivisors()).containsExactly(1L, 2L, 4L, 71L, 142L)
+    }
+
+    @Test
+    fun testAmicablePair() {
+        // I know `isEqualTo` checks for nullity. But adding the `isNotNull` call helps for documenting how the method works
+        assertThat(220L.amicablePair()).isNotNull().isEqualTo(284L)
+        assertThat(284L.amicablePair()).isNotNull().isEqualTo(220L)
+        assertThat(123L.amicablePair()).isNull()
+    }
+
 }
