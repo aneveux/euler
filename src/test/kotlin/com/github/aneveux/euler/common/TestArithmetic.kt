@@ -45,4 +45,14 @@ class TestArithmetic {
         assertThat(28L.numberOfDivisors()).isEqualTo(6)
     }
 
+    @Test
+    fun testFactorial() {
+        assertThat(10.toBigInteger().factorial()).isEqualTo(3628800.toBigInteger())
+    }
+
+    @Test
+    fun testSumDigits() {
+        assertThat(sumDigits(1234.toBigInteger())).isEqualTo(10)
+    }
+
 }

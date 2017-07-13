@@ -37,3 +37,9 @@ fun Number.numberOfDivisors() = with(this.primeFactors()) {
 }
 
 fun Long.pow(p: Long) = Math.pow(this.toDouble(), p.toDouble()).toLong()
+
+tailrec fun BigInteger.factorial(product: BigInteger = BigInteger.ONE): BigInteger =
+        if (this == BigInteger.ZERO) product
+        else (this - BigInteger.ONE).factorial(product.multiply(this))
+
+fun sumDigits(n: BigInteger) = n.toString().toCharArray().map { it.toIntValue() }.sum()

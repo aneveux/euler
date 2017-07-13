@@ -213,8 +213,6 @@ class Problem15 : Problem() {
  *
  */
 class Problem16 : Problem() {
-    fun sumDigits(n: BigInteger) = n.toString().toCharArray().map { it.toIntValue() }.sum()
-
     override fun solve() = sumDigits(2.toBigInteger().pow(1_000)).toString()
 }
 
@@ -299,4 +297,16 @@ class Problem19 : Problem() {
             .count()
 
     override fun solve() = countFirstSundays(from, to).toString()
+}
+
+/**
+ * Solving [https://projecteuler.net/problem=20]
+ *
+ * > Find the sum of the digits in the number 100!
+ *
+ */
+class Problem20 : Problem() {
+    fun sumDigitsFactorial(n: Int) = sumDigits(n.toBigInteger().factorial())
+
+    override fun solve() = sumDigitsFactorial(100).toString()
 }

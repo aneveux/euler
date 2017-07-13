@@ -1,5 +1,6 @@
 package com.github.aneveux.euler.problems
 
+import com.github.aneveux.euler.common.sumDigits
 import com.github.aneveux.euler.common.toBigInteger
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
@@ -59,7 +60,7 @@ class TestProblem16 {
 
     @Test
     fun testProblem16Example() {
-        assertThat(problem.sumDigits(2.toBigInteger().pow(15))).isEqualTo(26)
+        assertThat(sumDigits(2.toBigInteger().pow(15))).isEqualTo(26)
     }
 
     @Test
@@ -97,5 +98,19 @@ class TestProblem19 {
     @Test
     fun testProblem19Solution() {
         assertThat(problem.solve()).isEqualTo(171.toString())
+    }
+}
+
+class TestProblem20 {
+    val problem = Problem20()
+
+    @Test
+    fun testProblem20Example() {
+        assertThat(problem.sumDigitsFactorial(10)).isEqualTo(27)
+    }
+
+    @Test
+    fun testProblem20Solution() {
+        assertThat(problem.solve()).isEqualTo(648.toString())
     }
 }
