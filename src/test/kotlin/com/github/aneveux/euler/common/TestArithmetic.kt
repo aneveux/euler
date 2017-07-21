@@ -69,4 +69,23 @@ class TestArithmetic {
         assertThat(123L.amicablePair()).isNull()
     }
 
+    @Test
+    fun testPerfectNumbers() {
+        assertThat(28L.isPerfect()).isTrue()
+        assertThat(27L.isPerfect()).isFalse()
+    }
+
+    @Test
+    fun testDeficientNumbers() {
+        assertThat(14L.isDeficient()).isTrue()
+        assertThat(28L.isDeficient()).isFalse()
+        assertThat(12L.isDeficient()).isFalse()
+    }
+
+    @Test
+    fun testAbundantNumbers() {
+        assertThat(12L.isAbundant()).isTrue()
+        assertThat(28L.isAbundant()).isFalse()
+    }
+
 }

@@ -2,6 +2,7 @@ package com.github.aneveux.euler.problems
 
 import com.github.aneveux.euler.Problem
 import com.github.aneveux.euler.common.amicablePair
+import com.github.aneveux.euler.common.isAbundant
 import java.io.File
 import java.lang.Character.isLetter
 
@@ -37,4 +38,24 @@ class Problem22 : Problem() {
             }.sum()
 
     override fun solve() = namesScores(names).toString()
+}
+
+/**
+ * Solving [https://projecteuler.net/problem=23]
+ *
+ * > Find the sum of all the positive integers which cannot be written as the sum of two abundant numbers.
+ *
+ */
+class Problem23 : Problem() {
+    fun LongRange.abundantNumbers() = this.filter { it.isAbundant() }
+
+    val limit = 28123L
+    val abundants = (1L..limit).abundantNumbers()
+    val abundantsSums = abundants.flatMap { n ->
+        abundants.takeWhile { it <= limit - n }
+                .map { it + n }
+    }
+    val nonAbundantsSum = (1L..limit).minus(abundantsSums)
+
+    override fun solve() = nonAbundantsSum.sum().toString()
 }

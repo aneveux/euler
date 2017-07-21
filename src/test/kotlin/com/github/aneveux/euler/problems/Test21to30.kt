@@ -35,3 +35,19 @@ class TestProblem22 {
         assertThat(problem.solve()).isEqualTo(871198282.toString())
     }
 }
+
+class TestProblem23 {
+    val problem = Problem23()
+
+    @Test
+    fun testFilterAbundantNumbers() {
+        with(problem) {
+            assertThat((0L..30L).abundantNumbers()).containsExactly(12L, 18L, 20L, 24L, 30L)
+        }
+    }
+
+    @Test
+    fun testProblem23Solution() {
+        assertThat(problem.solve()).isEqualTo(4179871.toString())
+    }
+}

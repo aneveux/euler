@@ -45,6 +45,9 @@ tailrec fun BigInteger.factorial(product: BigInteger = BigInteger.ONE): BigInteg
 fun sumDigits(n: BigInteger) = n.toString().toCharArray().map { it.toIntValue() }.sum()
 
 fun Long.properDivisors() = (1..(this / 2)).filter { this isMultipleOf it }
+fun Long.isPerfect() = this.properDivisors().sum() == this
+fun Long.isDeficient() = this.properDivisors().sum() < this
+fun Long.isAbundant() = this.properDivisors().sum() > this
 
 fun Long.amicablePair(): Long? {
     val sum = this.properDivisors().sum()
