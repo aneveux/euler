@@ -92,7 +92,7 @@ class TestProblem8 {
 
     @Test
     fun testProblem8Example() {
-        assertThat(problem.maxProductOfAdjacentDigits(4L)).isEqualTo(5832L)
+        assertThat(problem.maxProductOfAdjacentDigits(4)).isEqualTo(5832L)
     }
 
     @Test

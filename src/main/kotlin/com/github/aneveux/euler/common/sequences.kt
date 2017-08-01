@@ -1,6 +1,6 @@
 package com.github.aneveux.euler.common
 
-import javaslang.collection.Stream
+import io.vavr.collection.Stream
 import java.math.BigInteger
 import kotlin.coroutines.experimental.buildSequence
 

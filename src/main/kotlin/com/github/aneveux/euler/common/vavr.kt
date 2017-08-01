@@ -1,6 +1,6 @@
 package com.github.aneveux.euler.common
 
-import javaslang.Tuple3
+import io.vavr.Tuple3
 
 operator fun <T> Tuple3<T, *, *>.component1(): T = _1
 operator fun <T> Tuple3<*, T, *>.component2(): T = _2

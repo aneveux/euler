@@ -1,6 +1,6 @@
 package com.github.aneveux.euler.common
 
-import javaslang.Tuple3
+import io.vavr.Tuple3
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 

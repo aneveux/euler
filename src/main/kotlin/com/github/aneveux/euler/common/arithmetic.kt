@@ -1,6 +1,6 @@
 package com.github.aneveux.euler.common
 
-import javaslang.Tuple3
+import io.vavr.Tuple3
 import java.math.BigInteger
 
 infix fun Number.isMultipleOf(n: Number) = this.toLong() % n.toLong() == 0L

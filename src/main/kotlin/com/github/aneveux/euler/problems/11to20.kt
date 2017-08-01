@@ -3,7 +3,7 @@ package com.github.aneveux.euler.problems
 import com.github.aneveux.euler.Problem
 import com.github.aneveux.euler.common.*
 import com.github.aneveux.euler.tools.toEnglish
-import javaslang.collection.Stream
+import io.vavr.collection.Stream
 import org.apache.commons.math3.util.CombinatoricsUtils
 import org.funktionale.collections.tail
 import java.math.BigInteger
