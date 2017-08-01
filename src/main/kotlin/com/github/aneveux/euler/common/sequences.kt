@@ -21,6 +21,20 @@ val fibonacci = buildSequence {
     }
 }
 
+val big_fibonacci = buildSequence {
+    var a = BigInteger.ZERO
+    var b = BigInteger.ONE
+
+    yield(BigInteger.ONE)
+
+    while (true) {
+        yield(a + b)
+        val tmp = a + b
+        a = b
+        b = tmp
+    }
+}
+
 val triangles = buildSequence {
     var index = 1
     var current = 0

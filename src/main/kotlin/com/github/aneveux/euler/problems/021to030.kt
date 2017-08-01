@@ -2,6 +2,8 @@ package com.github.aneveux.euler.problems
 
 import com.github.aneveux.euler.Problem
 import com.github.aneveux.euler.common.amicablePair
+import com.github.aneveux.euler.common.big_fibonacci
+import com.github.aneveux.euler.common.fibonacci
 import com.github.aneveux.euler.common.isAbundant
 import java.io.File
 import java.lang.Character.isLetter
@@ -69,9 +71,19 @@ class Problem23 : Problem() {
  *
  */
 class Problem24 : Problem() {
-    fun computePermutations(vararg elements: Char) = VList.ofAll(*elements).permutations()
+    fun computePermutations(vararg elements: Char): VList<String> = VList.ofAll(*elements).permutations()
             .map { it.joinToString(separator = "", prefix = "", postfix = "") }
 
     override fun solve() = computePermutations(*"0123456789".toCharArray())
             .elementAtOrElse(1_000_000 - 1) { "Permutation Not Found" }
+}
+
+/**
+ * Solving [https://projecteuler.net/problem=25]
+ *
+ * > What is the index of the first term in the Fibonacci sequence to contain 1000 digits?
+ *
+ */
+class Problem25 : Problem() {
+    override fun solve() = (big_fibonacci.indexOfFirst { it.toString().length == 1_000 } + 1).toString()
 }
