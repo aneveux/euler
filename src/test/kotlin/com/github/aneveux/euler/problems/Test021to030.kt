@@ -51,3 +51,19 @@ class TestProblem23 {
         assertThat(problem.solve()).isEqualTo(4179871.toString())
     }
 }
+
+class TestProblem24 {
+    val problem = Problem24()
+
+    @Test
+    fun testComputePermutations() {
+        with(problem) {
+            assertThat(computePermutations('0', '1', '2')).containsExactly("012", "021", "102", "120", "201", "210")
+        }
+    }
+
+    @Test
+    fun testProblem24Solution() {
+        assertThat(problem.solve()).isEqualTo(2783915460.toString())
+    }
+}

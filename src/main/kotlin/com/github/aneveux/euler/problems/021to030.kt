@@ -6,6 +6,8 @@ import com.github.aneveux.euler.common.isAbundant
 import java.io.File
 import java.lang.Character.isLetter
 
+import io.vavr.collection.List as VList
+
 /**
  * Solving [https://projecteuler.net/problem=21]
  *
@@ -58,4 +60,18 @@ class Problem23 : Problem() {
     val nonAbundantsSum = (1L..limit).minus(abundantsSums)
 
     override fun solve() = nonAbundantsSum.sum().toString()
+}
+
+/**
+ * Solving [https://projecteuler.net/problem=24]
+ *
+ * > What is the millionth lexicographic permutation of the digits 0, 1, 2, 3, 4, 5, 6, 7, 8 and 9?
+ *
+ */
+class Problem24 : Problem() {
+    fun computePermutations(vararg elements: Char) = VList.ofAll(*elements).permutations()
+            .map { it.joinToString(separator = "", prefix = "", postfix = "") }
+
+    override fun solve() = computePermutations(*"0123456789".toCharArray())
+            .elementAtOrElse(1_000_000 - 1) { "Permutation Not Found" }
 }
