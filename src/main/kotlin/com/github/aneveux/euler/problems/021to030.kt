@@ -1,12 +1,10 @@
 package com.github.aneveux.euler.problems
 
 import com.github.aneveux.euler.Problem
-import com.github.aneveux.euler.common.amicablePair
-import com.github.aneveux.euler.common.big_fibonacci
-import com.github.aneveux.euler.common.fibonacci
-import com.github.aneveux.euler.common.isAbundant
+import com.github.aneveux.euler.common.*
 import java.io.File
 import java.lang.Character.isLetter
+import java.math.BigInteger
 
 import io.vavr.collection.List as VList
 
@@ -86,4 +84,21 @@ class Problem24 : Problem() {
  */
 class Problem25 : Problem() {
     override fun solve() = (big_fibonacci.indexOfFirst { it.toString().length == 1_000 } + 1).toString()
+}
+
+/**
+ * Solving [https://projecteuler.net/problem=26]
+ *
+ * > Find the value of d < 1000 for which 1/d contains the longest recurring cycle in its decimal fraction part.
+ *
+ */
+class Problem26 : Problem() {
+    // See http://mathworld.wolfram.com/DecimalExpansion.html
+    // And http://mathworld.wolfram.com/MultiplicativeOrder.html
+    fun multiplicativeOrder(i: Int) = (1..i - 1).find { j ->
+        10.toBigInteger().modPow(j.toBigInteger(), i.toBigInteger()) <= BigInteger.ONE
+    } ?: 0
+
+    override fun solve() = (1..999).mapIndexed { index, i -> index + 1 to multiplicativeOrder(i) }
+            .maxBy { (_, v) -> v }?.first.toString()
 }

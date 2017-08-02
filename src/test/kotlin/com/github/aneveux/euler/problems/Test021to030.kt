@@ -76,3 +76,27 @@ class TestProblem25 {
         assertThat(problem.solve()).isEqualTo(4782.toString())
     }
 }
+
+class TestProblem26 {
+    val problem = Problem26()
+
+    @Test
+    fun testMultiplicativeOrder() {
+        with (problem) {
+            assertThat(multiplicativeOrder(2)).isEqualTo(1)
+            assertThat(multiplicativeOrder(3)).isEqualTo(1)
+            assertThat(multiplicativeOrder(4)).isEqualTo(2)
+            assertThat(multiplicativeOrder(5)).isEqualTo(1)
+            assertThat(multiplicativeOrder(6)).isEqualTo(0)
+            assertThat(multiplicativeOrder(7)).isEqualTo(6)
+            assertThat(multiplicativeOrder(8)).isEqualTo(3)
+            assertThat(multiplicativeOrder(9)).isEqualTo(1)
+            assertThat(multiplicativeOrder(10)).isEqualTo(1)
+        }
+    }
+
+    @Test
+    fun testProblem26Solution() {
+        assertThat(problem.solve()).isEqualTo(983.toString())
+    }
+}
