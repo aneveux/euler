@@ -2,6 +2,8 @@ package com.github.aneveux.euler.problems
 
 import com.github.aneveux.euler.Problem
 import com.github.aneveux.euler.common.*
+import io.vavr.collection.Stream
+import io.vavr.control.Option
 import java.io.File
 import java.lang.Character.isLetter
 import java.math.BigInteger
@@ -110,5 +112,21 @@ class Problem26 : Problem() {
  *
  */
 class Problem27 : Problem() {
-    override fun solve() = ""
+    fun quadratic(n: Int, a: Int, b: Int) = n.square() + a * n + b
+    val limits: Stream<Int> = Stream.range(-1_000, 1_000)
+
+//     Limit set following this:
+//     n = 80 (because of incredible formula from the problem)
+//     a = 1_000 (limit)
+//     b = 1_000 (limit)
+//     in the incredible formula from the problem: n²+an+b = 87_400
+    val nLimit: Stream<Int> = Stream.range(0, 87_400)
+
+    val combinations: Stream<Pair<Int, Int>> = limits.flatMap { a -> limits.map { b -> a to b } }
+
+    val maxPrimePair: Option<Pair<Int, Int>> = combinations.maxBy { (a, b) ->
+        nLimit.takeWhile { n -> quadratic(n, a, b).isPrime() }.count()
+    }
+
+    override fun solve() = maxPrimePair.get().let { (a, b) -> a * b }.toString()
 }

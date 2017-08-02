@@ -2,7 +2,7 @@ package com.github.aneveux.euler.common
 
 import io.vavr.Tuple3
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Test
+import org.junit.Test
 
 class TestArithmetic {
 

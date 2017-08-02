@@ -3,7 +3,7 @@ package com.github.aneveux.euler.problems
 import com.github.aneveux.euler.common.sumDigits
 import com.github.aneveux.euler.common.toBigInteger
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Test
+import org.junit.Test
 
 class TestProblem11 {
     val problem = Problem11()

@@ -1,7 +1,7 @@
 package com.github.aneveux.euler.problems
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Test
+import org.junit.Test
 
 class TestProblem21 {
     val problem = Problem21()
@@ -82,7 +82,7 @@ class TestProblem26 {
 
     @Test
     fun testMultiplicativeOrder() {
-        with (problem) {
+        with(problem) {
             assertThat(multiplicativeOrder(2)).isEqualTo(1)
             assertThat(multiplicativeOrder(3)).isEqualTo(1)
             assertThat(multiplicativeOrder(4)).isEqualTo(2)
@@ -98,5 +98,14 @@ class TestProblem26 {
     @Test
     fun testProblem26Solution() {
         assertThat(problem.solve()).isEqualTo(983.toString())
+    }
+}
+
+class TestProblem27 {
+    val problem = Problem27()
+
+    @Test
+    fun testProblem27Solution() {
+        assertThat(problem.solve()).isEqualTo((-59231).toString())
     }
 }
