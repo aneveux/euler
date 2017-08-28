@@ -115,11 +115,11 @@ class Problem27 : Problem() {
     fun quadratic(n: Int, a: Int, b: Int) = n.square() + a * n + b
     val limits: Stream<Int> = Stream.range(-1_000, 1_000)
 
-//     Limit set following this:
-//     n = 80 (because of incredible formula from the problem)
-//     a = 1_000 (limit)
-//     b = 1_000 (limit)
-//     in the incredible formula from the problem: n²+an+b = 87_400
+    //     Limit set following this:
+    //     n = 80 (because of incredible formula from the problem)
+    //     a = 1_000 (limit)
+    //     b = 1_000 (limit)
+    //     in the incredible formula from the problem: n²+an+b = 87_400
     val nLimit: Stream<Int> = Stream.range(0, 87_400)
 
     val combinations: Stream<Pair<Int, Int>> = limits.flatMap { a -> limits.map { b -> a to b } }
@@ -129,4 +129,19 @@ class Problem27 : Problem() {
     }
 
     override fun solve() = maxPrimePair.get().let { (a, b) -> a * b }.toString()
+}
+
+/**
+ * Solving [https://projecteuler.net/problem=28]
+ *
+ * > What is the sum of the numbers on the diagonals in a 1001 by 1001 spiral formed in the same way?
+ *
+ */
+class Problem28 : Problem() {
+    fun spiralSum(squareSize: Int) = Stream.rangeBy(2, squareSize, 2)
+            .flatMap { it.replicate(4) }
+            .scanLeft(1) { buffer, value -> buffer + value }
+            .sum()
+
+    override fun solve() = spiralSum(1_001).toString()
 }

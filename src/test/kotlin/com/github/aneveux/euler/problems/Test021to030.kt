@@ -109,3 +109,19 @@ class TestProblem27 {
         assertThat(problem.solve()).isEqualTo((-59231).toString())
     }
 }
+
+class TestProblem28 {
+    val problem = Problem28()
+
+    @Test
+    fun testProblem28Example() {
+        with(problem) {
+            assertThat(problem.spiralSum(5)).isEqualTo(101L)
+        }
+    }
+
+    @Test
+    fun testProblem28Solution() {
+        assertThat(problem.solve()).isEqualTo(669171001.toString())
+    }
+}
