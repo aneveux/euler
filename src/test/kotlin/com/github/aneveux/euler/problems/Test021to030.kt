@@ -1,5 +1,6 @@
 package com.github.aneveux.euler.problems
 
+import com.github.aneveux.euler.common.toBigInteger
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 
@@ -123,5 +124,23 @@ class TestProblem28 {
     @Test
     fun testProblem28Solution() {
         assertThat(problem.solve()).isEqualTo(669171001.toString())
+    }
+}
+
+class TestProblem29 {
+    val problem = Problem29()
+
+    @Test
+    fun testProblem29Example() {
+        with(problem) {
+            assertThat((2..5).distinctPowers())
+                    .containsOnly(*arrayOf(4, 8, 9, 16, 25, 27, 32, 64, 81, 125, 243, 256, 625, 1024, 3125)
+                            .map { it.toBigInteger() }.toTypedArray())
+        }
+    }
+
+    @Test
+    fun testProblem29Solution() {
+        assertThat(problem.solve()).isEqualTo(9183.toString())
     }
 }
