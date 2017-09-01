@@ -1,5 +1,6 @@
 package com.github.aneveux.euler.problems
 
+import com.github.aneveux.euler.common.pow
 import com.github.aneveux.euler.common.toBigInteger
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
@@ -142,5 +143,29 @@ class TestProblem29 {
     @Test
     fun testProblem29Solution() {
         assertThat(problem.solve()).isEqualTo(9183.toString())
+    }
+}
+
+class TestProblem30 {
+    val problem = Problem30()
+
+    @Test
+    fun testDigits() {
+        with(problem) {
+            assertThat(12345L.digits()).containsExactly(1L, 2L, 3L, 4L, 5L)
+        }
+    }
+
+    @Test
+    fun testSumDigitsPowersOf5() {
+        with(problem) {
+            assertThat(1L.sumDigitsPowersOf5()).isEqualTo(1L)
+            assertThat(23L.sumDigitsPowersOf5()).isEqualTo(2L.pow(5) + 3L.pow(5))
+        }
+    }
+
+    @Test
+    fun testProblem30Solution() {
+        assertThat(problem.solve()).isEqualTo(443839.toString())
     }
 }

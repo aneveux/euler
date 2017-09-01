@@ -158,3 +158,19 @@ class Problem29 : Problem() {
 
     override fun solve() = (2..100).distinctPowers().count().toString()
 }
+
+/**
+ * Solving [https://projecteuler.net/problem=30]
+ *
+ * > Find the sum of all the numbers that can be written as the sum of fifth powers of their digits.
+ *
+ */
+class Problem30 : Problem() {
+    val powersOf5 = listOf(0L, 1, 32, 243, 1_024, 3_125, 7_776, 16_807, 32_768, 59_049)
+    fun Long.digits() = this.toString().map { it.toString().toLong() }
+
+    fun Long.sumDigitsPowersOf5() = this.digits().map { powersOf5[it.toInt()] }.sum()
+
+    override fun solve() = Stream.range(2, 9L.pow(5) * 5)
+            .filter { it == it.sumDigitsPowersOf5() }.sum().toString()
+}
