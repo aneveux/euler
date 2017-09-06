@@ -65,3 +65,17 @@ class Problem33 : Problem() {
         denominator / product.greatestCommonFactor()
     }.toString()
 }
+
+/**
+ * Solving [https://projecteuler.net/problem=34]
+ *
+ * > Find the sum of all numbers which are equal to the sum of the factorial of their digits.
+ *
+ */
+class Problem34 : Problem() {
+    val factorials = listOf<Long>(1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880)
+
+    fun Long.hasFactorialDigits() = this == digits().map { factorials[it.toInt()] }.sum()
+
+    override fun solve() = (3L..999_999).filter { it.hasFactorialDigits() }.sum().toString()
+}

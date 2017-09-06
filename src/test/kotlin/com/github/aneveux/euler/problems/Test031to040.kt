@@ -45,3 +45,21 @@ class TestProblem33 {
         assertThat(problem.solve()).isEqualTo(100.toString())
     }
 }
+
+class TestProblem34 {
+    val problem = Problem34()
+
+    @Test
+    fun testHasFactorialDigits() {
+        with(problem) {
+            assertThat(145L.hasFactorialDigits()).isTrue()
+            assertThat(2L.hasFactorialDigits()).isTrue()
+            assertThat(24L.hasFactorialDigits()).isFalse()
+        }
+    }
+
+    @Test
+    fun testProblem34Solution() {
+        assertThat(problem.solve()).isEqualTo(40730.toString())
+    }
+}

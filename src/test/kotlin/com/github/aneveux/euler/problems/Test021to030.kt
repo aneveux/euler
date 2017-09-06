@@ -1,5 +1,6 @@
 package com.github.aneveux.euler.problems
 
+import com.github.aneveux.euler.common.digits
 import com.github.aneveux.euler.common.pow
 import com.github.aneveux.euler.common.toBigInteger
 import org.assertj.core.api.Assertions.assertThat

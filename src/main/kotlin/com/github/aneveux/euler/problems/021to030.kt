@@ -167,7 +167,6 @@ class Problem29 : Problem() {
  */
 class Problem30 : Problem() {
     val powersOf5 = listOf(0L, 1, 32, 243, 1_024, 3_125, 7_776, 16_807, 32_768, 59_049)
-    fun Long.digits() = this.toString().map { it.toString().toLong() }
 
     fun Long.sumDigitsPowersOf5() = this.digits().map { powersOf5[it.toInt()] }.sum()
 

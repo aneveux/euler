@@ -8,3 +8,5 @@ fun Char.toIntValue(): Int =
         if (this !in '0'..'9')
             throw IllegalArgumentException("Out of range")
         else this.toInt() - '0'.toInt()
+
+fun Long.digits() = this.toString().map { it.toString().toLong() }
