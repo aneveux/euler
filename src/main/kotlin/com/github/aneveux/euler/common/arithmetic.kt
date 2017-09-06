@@ -55,3 +55,24 @@ fun Long.amicablePair(): Long? {
         return sum
     else return null
 }
+
+fun Long.isPandigital(indice: Int = this.toString().length): Boolean {
+    fun isPandigital(number: String, digits: List<Int>): Boolean = when {
+        number.isEmpty() -> digits.isEmpty()
+        else -> {
+            val first = number.first().toIntValue()
+            digits.contains(first) && isPandigital(number.substring(1), digits - first)
+        }
+    }
+    return with(this.toString()) {
+        isPandigital(this, (1..length).toList()) && length == indice
+    }
+}
+
+fun Tuple3<Long, Long, Long>.isPandigital() = this.let { (a, b, c) ->
+    "$a$b$c".toLong().isPandigital()
+}
+
+fun Tuple3<Long, Long, Long>.isPandigital(indice: Int) = this.isPandigital() && this.let { (a, b, c) ->
+    "$a$b$c".length == indice
+}

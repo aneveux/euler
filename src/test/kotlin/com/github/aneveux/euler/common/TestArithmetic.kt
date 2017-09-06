@@ -88,4 +88,27 @@ class TestArithmetic {
         assertThat(28L.isAbundant()).isFalse()
     }
 
+    @Test
+    fun testIsPandigital() {
+        assertThat(123L.isPandigital()).isTrue()
+        assertThat(1123L.isPandigital()).isFalse()
+        assertThat(1L.isPandigital()).isTrue()
+        assertThat(0L.isPandigital()).isFalse()
+        assertThat(123456789L.isPandigital()).isTrue()
+        assertThat(12345679L.isPandigital()).isFalse()
+
+        assertThat(1324L.isPandigital(4)).isTrue()
+        assertThat(1245L.isPandigital(4)).isFalse()
+        assertThat(123456L.isPandigital(4)).isFalse()
+    }
+
+    @Test
+    fun testTupleIsPandigital() {
+        assertThat(Tuple3(1L, 2L, 3L).isPandigital()).isTrue()
+        assertThat(Tuple3(1L, 2L, 4L).isPandigital()).isFalse()
+        assertThat(Tuple3(123L, 45L, 6L).isPandigital()).isTrue()
+        assertThat(Tuple3(12L, 34L, 5L).isPandigital(5)).isTrue()
+        assertThat(Tuple3(12L, 34L, 5L).isPandigital(6)).isFalse()
+    }
+
 }
