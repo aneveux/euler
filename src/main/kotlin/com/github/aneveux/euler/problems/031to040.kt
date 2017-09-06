@@ -1,8 +1,8 @@
 package com.github.aneveux.euler.problems
 
 import com.github.aneveux.euler.Problem
-import io.vavr.Tuple3
 import com.github.aneveux.euler.common.*
+import io.vavr.Tuple3
 
 /**
  * Solving [https://projecteuler.net/problem=31]
@@ -42,4 +42,26 @@ class Problem32 : Problem() {
             .distinct()
             .sum()
             .toString()
+}
+
+/**
+ * Solving [https://projecteuler.net/problem=33]
+ *
+ * > If the product of these four fractions is given in its lowest common terms, find the value of the denominator.
+ *
+ */
+class Problem33 : Problem() {
+    val fractions = (1..10).flatMap { i ->
+        (1..10).flatMap { denominator ->
+            (1..denominator - 1).filter { numerator ->
+                denominator * (10 * numerator + i) == numerator * (10 * i + denominator)
+            }.map { numerator -> numerator to denominator }
+        }
+    }
+
+    val product = fractions.reduce { (a, b), (c, d) -> (a * c) to (b * d) }
+
+    override fun solve() = product.let { (numerator, denominator) ->
+        denominator / product.greatestCommonFactor()
+    }.toString()
 }

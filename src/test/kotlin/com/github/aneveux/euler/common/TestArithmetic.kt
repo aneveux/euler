@@ -111,4 +111,13 @@ class TestArithmetic {
         assertThat(Tuple3(12L, 34L, 5L).isPandigital(6)).isFalse()
     }
 
+    @Test
+    fun testGreatestCommonFactor() {
+        assertThat((4 to 4).greatestCommonFactor()).isEqualTo(4)
+        assertThat((8 to 4).greatestCommonFactor()).isEqualTo(4)
+        assertThat((4 to 8).greatestCommonFactor()).isEqualTo(4)
+        assertThat((3 to 4).greatestCommonFactor()).isEqualTo(1)
+        assertThat((1 to 2).greatestCommonFactor()).isEqualTo(1)
+    }
+
 }

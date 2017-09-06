@@ -76,3 +76,7 @@ fun Tuple3<Long, Long, Long>.isPandigital() = this.let { (a, b, c) ->
 fun Tuple3<Long, Long, Long>.isPandigital(indice: Int) = this.isPandigital() && this.let { (a, b, c) ->
     "$a$b$c".length == indice
 }
+
+fun Pair<Int, Int>.greatestCommonFactor(): Int = this.let { (n, d) ->
+    if (d == 0) n else (d to (n % d)).greatestCommonFactor()
+}
