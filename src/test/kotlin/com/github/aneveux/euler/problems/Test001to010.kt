@@ -1,8 +1,8 @@
 package com.github.aneveux.euler.problems
 
-import com.github.aneveux.euler.common.primes
+import com.github.aneveux.euler.common.sequences.primes
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.Test
+import org.junit.jupiter.api.Test
 
 class TestProblem1 {
     val problem = Problem1()
@@ -64,7 +64,7 @@ class TestProblem6 {
 
     @Test
     fun testProblem6Example() {
-        assertThat(problem.squareSumMinusSumSquares((1..10))).isEqualTo(2640)
+        assertThat(problem.squareSumMinusSumSquares((1L..10))).isEqualTo(2640)
     }
 
     @Test

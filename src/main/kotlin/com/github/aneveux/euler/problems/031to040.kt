@@ -1,7 +1,12 @@
 package com.github.aneveux.euler.problems
 
 import com.github.aneveux.euler.Problem
-import com.github.aneveux.euler.common.*
+import com.github.aneveux.euler.common.helpers.component1
+import com.github.aneveux.euler.common.helpers.component2
+import com.github.aneveux.euler.common.helpers.component3
+import com.github.aneveux.euler.common.numbers.digits
+import com.github.aneveux.euler.common.numbers.greatestCommonFactor
+import com.github.aneveux.euler.common.numbers.isPandigital
 import io.vavr.Tuple3
 
 /**
@@ -12,7 +17,7 @@ import io.vavr.Tuple3
  */
 class Problem31 : Problem() {
     // Interesting reading: https://en.wikipedia.org/wiki/Change-making_problem
-    val coins = listOf(1, 2, 5, 10, 20, 50, 100, 200)
+    private val coins = listOf(1, 2, 5, 10, 20, 50, 100, 200)
 
     fun combinations(target: Int, maxCoinIndex: Int = coins.size): Int = when {
         target == 0 -> 1
@@ -35,7 +40,7 @@ class Problem32 : Problem() {
     // If n is 4 numbers, result will be 4 numbers as well. So no need to go beyond 4 numbers for n.
     // m doesn't need to go all the way to 4 numbers either, and we can simply go up to 4 numbers / n,
     // so it brings a fair balance with the result of the product, which will increase accordingly.
-    val allProducts = (1..10_000L).flatMap { n -> (1..10_000L / n).map { m -> Tuple3(n, m, n * m) } }
+    private val allProducts = (1..10_000L).flatMap { n -> (1..10_000L / n).map { m -> Tuple3(n, m, n * m) } }
 
     override fun solve() = allProducts.filter { it.isPandigital(9) }
             .map { (n, m, product) -> product }
@@ -51,15 +56,15 @@ class Problem32 : Problem() {
  *
  */
 class Problem33 : Problem() {
-    val fractions = (1..10).flatMap { i ->
+    private val fractions = (1..10).flatMap { i ->
         (1..10).flatMap { denominator ->
-            (1..denominator - 1).filter { numerator ->
+            (1 until denominator).filter { numerator ->
                 denominator * (10 * numerator + i) == numerator * (10 * i + denominator)
             }.map { numerator -> numerator to denominator }
         }
     }
 
-    val product = fractions.reduce { (a, b), (c, d) -> (a * c) to (b * d) }
+    private val product = fractions.reduce { (a, b), (c, d) -> (a * c) to (b * d) }
 
     override fun solve() = product.let { (numerator, denominator) ->
         denominator / product.greatestCommonFactor()
@@ -73,7 +78,7 @@ class Problem33 : Problem() {
  *
  */
 class Problem34 : Problem() {
-    val factorials = listOf<Long>(1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880)
+    private val factorials = listOf<Long>(1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880)
 
     fun Long.hasFactorialDigits() = this == digits().map { factorials[it.toInt()] }.sum()
 

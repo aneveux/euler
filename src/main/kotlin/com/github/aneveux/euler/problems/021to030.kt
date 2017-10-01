@@ -1,13 +1,14 @@
 package com.github.aneveux.euler.problems
 
 import com.github.aneveux.euler.Problem
-import com.github.aneveux.euler.common.*
+import com.github.aneveux.euler.common.numbers.*
+import com.github.aneveux.euler.common.sequences.big_fibonacci
+import com.github.aneveux.euler.common.sequences.replicate
 import io.vavr.collection.Stream
 import io.vavr.control.Option
 import java.io.File
 import java.lang.Character.isLetter
 import java.math.BigInteger
-
 import io.vavr.collection.List as VList
 
 /**
@@ -17,7 +18,7 @@ import io.vavr.collection.List as VList
  *
  */
 class Problem21 : Problem() {
-    fun amicableNumbersUntil(limit: Long) = (1..limit).filter { it.amicablePair() != null }
+    private fun amicableNumbersUntil(limit: Long) = (1..limit).filter { it.amicablePair().isDefined }
 
     override fun solve() = amicableNumbersUntil(10_000).sum().toString()
 }
@@ -34,7 +35,7 @@ class Problem22 : Problem() {
      */
     fun String.score() = this.toList().filter(::isLetter).map(Char::toInt).map { it - 64 }.sum()
 
-    val names = File("src/main/resources/022.txt").readText().split(",")
+    private val names = File("src/main/resources/022.txt").readText().split(",")
 
     fun namesScores(names: List<String>) = names.sorted()
             .mapIndexed { index, name ->
@@ -53,13 +54,13 @@ class Problem22 : Problem() {
 class Problem23 : Problem() {
     fun LongRange.abundantNumbers() = this.filter { it.isAbundant() }
 
-    val limit = 28123L
-    val abundants = (1L..limit).abundantNumbers()
-    val abundantsSums = abundants.flatMap { n ->
+    private val limit = 28123L
+    private val abundants = (1L..limit).abundantNumbers()
+    private val abundantsSums = abundants.flatMap { n ->
         abundants.takeWhile { it <= limit - n }
                 .map { it + n }
     }
-    val nonAbundantsSum = (1L..limit).minus(abundantsSums)
+    private val nonAbundantsSum = (1L..limit).minus(abundantsSums)
 
     override fun solve() = nonAbundantsSum.sum().toString()
 }
@@ -74,7 +75,7 @@ class Problem24 : Problem() {
     fun computePermutations(vararg elements: Char): VList<String> = VList.ofAll(*elements).permutations()
             .map { it.joinToString(separator = "", prefix = "", postfix = "") }
 
-    override fun solve() = computePermutations(*"0123456789".toCharArray())
+    override fun solve(): String = computePermutations(*"0123456789".toCharArray())
             .elementAtOrElse(1_000_000 - 1) { "Permutation Not Found" }
 }
 
@@ -97,11 +98,11 @@ class Problem25 : Problem() {
 class Problem26 : Problem() {
     // See http://mathworld.wolfram.com/DecimalExpansion.html
     // And http://mathworld.wolfram.com/MultiplicativeOrder.html
-    fun multiplicativeOrder(i: Int) = (1..i - 1).find { j ->
-        10.toBigInteger().modPow(j.toBigInteger(), i.toBigInteger()) <= BigInteger.ONE
+    fun multiplicativeOrder(i: Long) = (1L until i).find { j ->
+        10L.toBigInteger().modPow(j.toBigInteger(), i.toBigInteger()) <= BigInteger.ONE
     } ?: 0
 
-    override fun solve() = (1..999).mapIndexed { index, i -> index + 1 to multiplicativeOrder(i) }
+    override fun solve() = (1L..999).mapIndexed { index, i -> index + 1 to multiplicativeOrder(i) }
             .maxBy { (_, v) -> v }?.first.toString()
 }
 
@@ -112,19 +113,19 @@ class Problem26 : Problem() {
  *
  */
 class Problem27 : Problem() {
-    fun quadratic(n: Int, a: Int, b: Int) = n.square() + a * n + b
-    val limits: Stream<Int> = Stream.range(-1_000, 1_000)
+    private fun quadratic(n: Long, a: Long, b: Long) = n.square() + a * n + b
+    private val limits: Stream<Long> = Stream.range(-1_000L, 1_000)
 
     //     Limit set following this:
     //     n = 80 (because of incredible formula from the problem)
     //     a = 1_000 (limit)
     //     b = 1_000 (limit)
     //     in the incredible formula from the problem: n²+an+b = 87_400
-    val nLimit: Stream<Int> = Stream.range(0, 87_400)
+    private val nLimit: Stream<Long> = Stream.range(0L, 87_400)
 
-    val combinations: Stream<Pair<Int, Int>> = limits.flatMap { a -> limits.map { b -> a to b } }
+    private val combinations: Stream<Pair<Long, Long>> = limits.flatMap { a -> limits.map { b -> a to b } }
 
-    val maxPrimePair: Option<Pair<Int, Int>> = combinations.maxBy { (a, b) ->
+    private val maxPrimePair: Option<Pair<Long, Long>> = combinations.maxBy { (a, b) ->
         nLimit.takeWhile { n -> quadratic(n, a, b).isPrime() }.count()
     }
 
@@ -138,7 +139,7 @@ class Problem27 : Problem() {
  *
  */
 class Problem28 : Problem() {
-    fun spiralSum(squareSize: Int) = Stream.rangeBy(2, squareSize, 2)
+    fun spiralSum(squareSize: Int): Number = Stream.rangeBy(2, squareSize, 2)
             .flatMap { it.replicate(4) }
             .scanLeft(1) { buffer, value -> buffer + value }
             .sum()
@@ -153,10 +154,10 @@ class Problem28 : Problem() {
  *
  */
 class Problem29 : Problem() {
-    fun IntRange.distinctPowers() = this.flatMap { a -> this.map { b -> a to b } }
+    fun LongRange.distinctPowers() = this.flatMap { a -> this.map { b -> a to b.toInt() } }
             .map { (a, b) -> a.toBigInteger().pow(b) }.toSet()
 
-    override fun solve() = (2..100).distinctPowers().count().toString()
+    override fun solve() = (2L..100).distinctPowers().count().toString()
 }
 
 /**
@@ -166,7 +167,7 @@ class Problem29 : Problem() {
  *
  */
 class Problem30 : Problem() {
-    val powersOf5 = listOf(0L, 1, 32, 243, 1_024, 3_125, 7_776, 16_807, 32_768, 59_049)
+    private val powersOf5 = listOf(0L, 1, 32, 243, 1_024, 3_125, 7_776, 16_807, 32_768, 59_049)
 
     fun Long.sumDigitsPowersOf5() = this.digits().map { powersOf5[it.toInt()] }.sum()
 

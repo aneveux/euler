@@ -1,10 +1,10 @@
 package com.github.aneveux.euler.problems
 
-import com.github.aneveux.euler.common.digits
-import com.github.aneveux.euler.common.pow
-import com.github.aneveux.euler.common.toBigInteger
+import com.github.aneveux.euler.common.numbers.digits
+import com.github.aneveux.euler.common.numbers.pow
+import com.github.aneveux.euler.common.numbers.toBigInteger
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.Test
+import org.junit.jupiter.api.Test
 
 class TestProblem21 {
     val problem = Problem21()
@@ -135,9 +135,9 @@ class TestProblem29 {
     @Test
     fun testProblem29Example() {
         with(problem) {
-            assertThat((2..5).distinctPowers())
+            assertThat((2L..5).distinctPowers())
                     .containsOnly(*arrayOf(4, 8, 9, 16, 25, 27, 32, 64, 81, 125, 243, 256, 625, 1024, 3125)
-                            .map { it.toBigInteger() }.toTypedArray())
+                            .map { it.toLong().toBigInteger() }.toTypedArray())
         }
     }
 
@@ -153,7 +153,7 @@ class TestProblem30 {
     @Test
     fun testDigits() {
         with(problem) {
-            assertThat(12345L.digits()).containsExactly(1L, 2L, 3L, 4L, 5L)
+            assertThat(12345L.digits()).containsExactly(1, 2, 3, 4, 5)
         }
     }
 

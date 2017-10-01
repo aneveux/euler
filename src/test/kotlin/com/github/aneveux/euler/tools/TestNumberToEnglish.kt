@@ -1,7 +1,8 @@
 package com.github.aneveux.euler.tools
 
+import com.github.aneveux.euler.problems.helpers.toEnglish
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.Test
+import org.junit.jupiter.api.Test
 
 class TestNumberToEnglish {
 

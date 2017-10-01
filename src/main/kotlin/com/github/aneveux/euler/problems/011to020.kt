@@ -1,8 +1,13 @@
 package com.github.aneveux.euler.problems
 
 import com.github.aneveux.euler.Problem
-import com.github.aneveux.euler.common.*
-import com.github.aneveux.euler.tools.toEnglish
+import com.github.aneveux.euler.common.numbers.factorial
+import com.github.aneveux.euler.common.numbers.numberOfDivisors
+import com.github.aneveux.euler.common.numbers.sumDigits
+import com.github.aneveux.euler.common.numbers.toBigInteger
+import com.github.aneveux.euler.common.sequences.collatzSequence
+import com.github.aneveux.euler.common.sequences.triangles
+import com.github.aneveux.euler.problems.helpers.toEnglish
 import io.vavr.collection.Stream
 import org.apache.commons.math3.util.CombinatoricsUtils
 import org.funktionale.collections.tail
@@ -209,11 +214,11 @@ class Problem15 : Problem() {
 /**
  * Solving [https://projecteuler.net/problem=16]
  *
- * > What is the sum of the digits of the number 21000?
+ * > What is the sum of the digits of the number 2 pow 1000?
  *
  */
 class Problem16 : Problem() {
-    override fun solve() = sumDigits(2.toBigInteger().pow(1_000)).toString()
+    override fun solve() = 2L.toBigInteger().pow(1_000).sumDigits().toString()
 }
 
 /**
@@ -223,7 +228,7 @@ class Problem16 : Problem() {
  *
  */
 class Problem17 : Problem() {
-    fun numberLettersCount(n: Int) = n.toEnglish().filter(Char::isLetter).count()
+    private fun numberLettersCount(n: Int) = n.toEnglish().filter(Char::isLetter).count()
     fun numberLettersCount(r: IntRange) = r.map { numberLettersCount(it) }.sum()
 
     override fun solve() = numberLettersCount(1..1_000).toString()
@@ -237,7 +242,7 @@ class Problem17 : Problem() {
  */
 class Problem18 : Problem() {
 
-    val input = """
+    private val input = """
             75
             95 64
             17 47 82
@@ -252,19 +257,20 @@ class Problem18 : Problem() {
             70 11 33 28 77 73 17 78 39 68 17 57
             91 71 52 38 17 14 91 43 58 50 27 29 48
             63 66 04 68 89 53 67 30 73 16 69 87 40 31
-            04 62 98 27 23 09 70 98 73 93 38 53 60 04 23"""
+            04 62 98 27 23 09 70 98 73 93 38 53 60 04 23
+            """
 
-    val triangle = input.trim().lines().map { it.trim().split(" ").map(String::toInt) }
+    private val triangle = input.trim().lines().map { it.trim().split(" ").map(String::toInt) }
 
-    fun maxByIndex(a: List<Int>, b: List<Int>) = a.zip(b).map { (i, j) -> maxOf(i, j) }
+    private fun maxByIndex(a: List<Int>, b: List<Int>) = a.zip(b).map { (i, j) -> maxOf(i, j) }
 
-    val accumulateSum = { acc: List<Int>, next: List<Int> ->
+    private val accumulateSum = { acc: List<Int>, next: List<Int> ->
         val s1 = next.zip(acc).map { (i, j) -> i + j }
         val s2 = next.zip(acc.drop(1)).map { (i, j) -> i + j }
         maxByIndex(s1, s2)
     }
 
-    val maxTotal = triangle.asReversed().tail().asSequence().fold(triangle.last(), accumulateSum).first()
+    private val maxTotal = triangle.asReversed().tail().asSequence().fold(triangle.last(), accumulateSum).first()
 
     override fun solve() = maxTotal.toString()
 }
@@ -276,10 +282,10 @@ class Problem18 : Problem() {
  *
  */
 class Problem19 : Problem() {
-    val from: LocalDate = LocalDate.of(1901, Month.JANUARY, 1)
-    val to: LocalDate = LocalDate.of(2000, Month.DECEMBER, 31)
+    private val from: LocalDate = LocalDate.of(1901, Month.JANUARY, 1)
+    private val to: LocalDate = LocalDate.of(2000, Month.DECEMBER, 31)
 
-    fun countFirstSundays(from: LocalDate, to: LocalDate): Int {
+    private fun countFirstSundays(from: LocalDate, to: LocalDate): Int {
         tailrec fun _countFirstSundays(acc: Int, current: LocalDate): Int =
                 if (current.isAfter(to))
                     acc
@@ -306,7 +312,7 @@ class Problem19 : Problem() {
  *
  */
 class Problem20 : Problem() {
-    fun sumDigitsFactorial(n: Int) = sumDigits(n.toBigInteger().factorial())
+    fun sumDigitsFactorial(n: Long) = n.toBigInteger().factorial().sumDigits()
 
-    override fun solve() = sumDigitsFactorial(100).toString()
+    override fun solve() = sumDigitsFactorial(100L).toString()
 }

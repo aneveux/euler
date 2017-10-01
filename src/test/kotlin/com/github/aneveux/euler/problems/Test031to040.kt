@@ -1,7 +1,7 @@
 package com.github.aneveux.euler.problems
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.Test
+import org.junit.jupiter.api.Test
 
 class TestProblem31 {
     val problem = Problem31()
