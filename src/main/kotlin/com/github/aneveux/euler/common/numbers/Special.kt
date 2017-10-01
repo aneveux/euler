@@ -129,3 +129,21 @@ fun Long.nextCollatz() = when {
     this.isEven() -> this / 2
     else -> 3 * this + 1
 }
+
+/**
+ * Checks if the receiver number is a Circular Prime _(eg. is prime and all circular numbers are primes)_.
+ *
+ * _Reference: [http://mathworld.wolfram.com/CircularPrime.html]_
+ *
+ * @see [circularNumbers]
+ *
+ * @return true if the receiver number is a circular prime
+ */
+fun Long.isCircularPrime() = when {
+    this < 10L -> this.isPrime()
+    !this.isPrime() -> false
+// First check for filtering: if it contains an even number, it won't be a circular prime.
+// Then we compute the circular numbers and check for primes.
+// Could be enhanced with some cache probably.
+    else -> this.digits().all { it.isOdd() } && this.circularNumbers().all { it.isPrime() }
+}

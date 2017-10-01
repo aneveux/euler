@@ -6,8 +6,10 @@ import com.github.aneveux.euler.common.helpers.component2
 import com.github.aneveux.euler.common.helpers.component3
 import com.github.aneveux.euler.common.numbers.digits
 import com.github.aneveux.euler.common.numbers.greatestCommonFactor
+import com.github.aneveux.euler.common.numbers.isCircularPrime
 import com.github.aneveux.euler.common.numbers.isPandigital
 import io.vavr.Tuple3
+import io.vavr.collection.Stream
 
 /**
  * Solving [https://projecteuler.net/problem=31]
@@ -43,7 +45,7 @@ class Problem32 : Problem() {
     private val allProducts = (1..10_000L).flatMap { n -> (1..10_000L / n).map { m -> Tuple3(n, m, n * m) } }
 
     override fun solve() = allProducts.filter { it.isPandigital(9) }
-            .map { (n, m, product) -> product }
+            .map { (_, _, product) -> product }
             .distinct()
             .sum()
             .toString()
@@ -66,7 +68,7 @@ class Problem33 : Problem() {
 
     private val product = fractions.reduce { (a, b), (c, d) -> (a * c) to (b * d) }
 
-    override fun solve() = product.let { (numerator, denominator) ->
+    override fun solve() = product.let { (_, denominator) ->
         denominator / product.greatestCommonFactor()
     }.toString()
 }
@@ -80,7 +82,18 @@ class Problem33 : Problem() {
 class Problem34 : Problem() {
     private val factorials = listOf<Long>(1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880)
 
-    fun Long.hasFactorialDigits() = this == digits().map { factorials[it.toInt()] }.sum()
+    fun Long.hasFactorialDigits() = this == digits().map { factorials[it] }.sum()
 
     override fun solve() = (3L..999_999).filter { it.hasFactorialDigits() }.sum().toString()
+}
+
+/**
+ * Solving [https://projecteuler.net/problem=35]
+ *
+ * > How many circular primes are there below one million?
+ *
+ */
+class Problem35 : Problem() {
+    override fun solve() = Stream.range(2L, 1_000_000).filter { it.isCircularPrime() }
+            .count().toString()
 }

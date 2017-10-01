@@ -73,4 +73,14 @@ class TestSpecial {
         assertThat(Tuple3(12L, 34L, 5L).isPandigital(5)).isTrue()
         assertThat(Tuple3(12L, 34L, 5L).isPandigital(6)).isFalse()
     }
+
+    @Test
+    fun testCircularPrimes() {
+        assertThat(2L.isCircularPrime()).isTrue()
+        assertThat(3L.isCircularPrime()).isTrue()
+        assertThat(4L.isCircularPrime()).isFalse()
+        assertThat(17L.isCircularPrime()).isTrue()
+        assertThat(19L.isCircularPrime()).isFalse()
+        assertThat(197L.isCircularPrime()).isTrue()
+    }
 }

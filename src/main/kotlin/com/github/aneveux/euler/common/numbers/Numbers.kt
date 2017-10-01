@@ -1,6 +1,8 @@
 package com.github.aneveux.euler.common.numbers
 
+import com.github.aneveux.euler.common.sequences.replicate
 import java.math.BigInteger
+import io.vavr.collection.List as VList
 
 /**
  * Returns the Int value actually contained in a Char, and not the int matching the Char.
@@ -28,14 +30,14 @@ fun Long.toBigInteger(): BigInteger = BigInteger.valueOf(this)
  *
  * @return true if the receiver is an even number
  */
-fun Long.isEven() = this isMultipleOf 2
+fun Number.isEven() = this.toLong() isMultipleOf 2
 
 /**
  * Checks if a number is odd _(eg. not multiple of 2)_.
  *
  * @return true if the receiver is an odd number
  */
-fun Long.isOdd() = !this.isEven()
+fun Number.isOdd() = !this.isEven()
 
 /**
  * Returns the integer part of the receiver _(eg. removes the decimal part)_.
@@ -61,3 +63,19 @@ fun Long.digits() = this.toString().map(Char::toIntValue)
  * @return a list of all the receiver's digits
  */
 fun BigInteger.digits() = this.toString().map(Char::toIntValue)
+
+/**
+ * Returns a List containing all the circular numbers from the receiver's digits _(eg. rotating the number around a circle)_.
+ *
+ * Example: `Circular numbers of 123 are 231 and 312`
+ *
+ * @return a List containing all circular numbers of the receiver's digits
+ */
+fun Long.circularNumbers() = this.digits().let { digits ->
+    VList.ofAll(digits.replicate(2).flatten())
+            .sliding(digits.size)
+            .toList()
+            .map { it.joinToString(postfix = "", prefix = "", separator = "") { "$it" } }
+            .map { it.toLong() }
+            .removeAll(this)
+}

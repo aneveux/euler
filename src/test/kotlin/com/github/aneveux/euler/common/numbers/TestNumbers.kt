@@ -19,4 +19,12 @@ class TestNumbers {
     fun testFloor() {
         assertThat(2.25.floor()).isEqualTo(2L)
     }
+
+    @Test
+    fun testCircularNumbers() {
+        assertThat(123L.circularNumbers()).containsExactly(231, 312)
+        assertThat(1L.circularNumbers()).isEmpty()
+        assertThat(15L.circularNumbers()).containsExactly(51)
+        assertThat(6831L.circularNumbers()).containsExactly(8316, 3168, 1683)
+    }
 }
