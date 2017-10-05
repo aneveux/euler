@@ -79,3 +79,12 @@ fun Long.circularNumbers() = this.digits().let { digits ->
             .map { it.toLong() }
             .removeAll(this)
 }
+
+/**
+ * Returns a Binary conversion of the receiver number.
+ *
+ * _Reference: [http://mathworld.wolfram.com/Binary.html]_
+ *
+ * @return the receiver number in base 2
+ */
+fun Long.toBinary() = Integer.toBinaryString(this.toInt())

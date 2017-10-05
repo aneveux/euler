@@ -4,10 +4,7 @@ import com.github.aneveux.euler.Problem
 import com.github.aneveux.euler.common.helpers.component1
 import com.github.aneveux.euler.common.helpers.component2
 import com.github.aneveux.euler.common.helpers.component3
-import com.github.aneveux.euler.common.numbers.digits
-import com.github.aneveux.euler.common.numbers.greatestCommonFactor
-import com.github.aneveux.euler.common.numbers.isCircularPrime
-import com.github.aneveux.euler.common.numbers.isPandigital
+import com.github.aneveux.euler.common.numbers.*
 import io.vavr.Tuple3
 import io.vavr.collection.Stream
 
@@ -96,4 +93,15 @@ class Problem34 : Problem() {
 class Problem35 : Problem() {
     override fun solve() = Stream.range(2L, 1_000_000).filter { it.isCircularPrime() }
             .count().toString()
+}
+
+/**
+ * Solving [https://projecteuler.net/problem=36]
+ *
+ * > Find the sum of all numbers, less than one million, which are palindromic in base 10 and base 2.
+ *
+ */
+class Problem36 : Problem() {
+    override fun solve() = Stream.range(1L, 1_000_000).filter { it.isDoubleBasePalindromic() }
+            .sum().toString()
 }

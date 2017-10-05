@@ -9,13 +9,22 @@ import io.vavr.control.Option.none
 import io.vavr.control.Option.some
 
 /**
+ * Checks if a receiver String is palindromic _(eg. same when written forwards or backwards)_.
+ *
+ * @return true if the receiver String is palindromic
+ */
+fun String.isPalindromic() = reversed().contentEquals(this)
+
+/**
  * Checks if a number is palindromic _(eg. same when written forwards or backwards)_.
  *
  * _Reference: [http://mathworld.wolfram.com/PalindromicNumber.html]_
  *
+ * @see [isPalindromic]
+ *
  * @return true if the receiver is a palindromic number
  */
-fun Long.isPalindromic() = with(this.toString()) { reversed().contentEquals(this) }
+fun Long.isPalindromic() = this.toString().isPalindromic()
 
 /**
  * Checks if the receiver number is a prime number _(eg. only divisors are 1 and itself)_.
@@ -147,3 +156,12 @@ fun Long.isCircularPrime() = when {
 // Could be enhanced with some cache probably.
     else -> this.digits().all { it.isOdd() } && this.circularNumbers().all { it.isPrime() }
 }
+
+/**
+ * Checks if the receiver number is palindromic and if the binary conversion of the receiver number is palindromic as well.
+ *
+ * @see [isPalindromic]
+ *
+ * @return true if the receiver number is palindromic in base 10 and base 2
+ */
+fun Long.isDoubleBasePalindromic() = this.isPalindromic() && this.toBinary().isPalindromic()

@@ -27,4 +27,13 @@ class TestNumbers {
         assertThat(15L.circularNumbers()).containsExactly(51)
         assertThat(6831L.circularNumbers()).containsExactly(8316, 3168, 1683)
     }
+
+    @Test
+    fun testToBinary() {
+        assertThat(0L.toBinary()).isEqualTo(0)
+        assertThat(1L.toBinary()).isEqualTo(1)
+        assertThat(2L.toBinary()).isEqualTo(10)
+        assertThat(3L.toBinary()).isEqualTo(11)
+        assertThat(4L.toBinary()).isEqualTo(100)
+    }
 }

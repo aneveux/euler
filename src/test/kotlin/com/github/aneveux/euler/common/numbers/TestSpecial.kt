@@ -83,4 +83,10 @@ class TestSpecial {
         assertThat(19L.isCircularPrime()).isFalse()
         assertThat(197L.isCircularPrime()).isTrue()
     }
+
+    @Test
+    fun testIsDoubleBasePalindromic() {
+        assertThat(585L.isDoubleBasePalindromic()).isTrue()
+        assertThat(584L.isDoubleBasePalindromic()).isFalse()
+    }
 }
