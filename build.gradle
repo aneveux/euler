@@ -2,7 +2,7 @@ group 'com.github.aneveux'
 version '1.0-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = '1.1.50'
+    ext.kotlin_version = '1.2.0'
 
     repositories {
         mavenCentral()
@@ -10,7 +10,7 @@ buildscript {
 
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "org.junit.platform:junit-platform-gradle-plugin:1.0.0"
+        classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.2'
     }
 }
 
@@ -62,8 +62,9 @@ dependencies {
 
     compile 'org.apache.commons:commons-math3:3.6.1'
 
-    testCompile 'org.junit.jupiter:junit-jupiter-api:5.0.0'
-    testRuntime 'org.junit.jupiter:junit-jupiter-engine:5.0.0'
+    testCompile 'org.junit.jupiter:junit-jupiter-api:5.0.2'
+    testRuntime 'org.junit.platform:junit-platform-launcher:1.0.2'
+    testRuntime 'org.junit.jupiter:junit-jupiter-engine:5.0.2'
     testCompile 'org.assertj:assertj-core:3.8.0'
 }
 
