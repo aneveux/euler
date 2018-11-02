@@ -2,14 +2,13 @@ package com.github.aneveux.euler.common.sequences
 
 import com.github.aneveux.euler.common.numbers.nextCollatz
 import java.math.BigInteger
-import kotlin.coroutines.experimental.buildSequence
 
 /**
  * An infinite sequence containing values of the Fibonacci sequence.
  *
  * _Reference: [http://mathworld.wolfram.com/FibonacciNumber.html]_
  */
-val fibonacci = buildSequence {
+val fibonacci = sequence {
     var a = 0L
     var b = 1L
 
@@ -29,7 +28,7 @@ val fibonacci = buildSequence {
  *
  * _Reference: [http://mathworld.wolfram.com/FibonacciNumber.html]_
  */
-val big_fibonacci = buildSequence {
+val big_fibonacci = sequence {
     var a = BigInteger.ZERO
     var b = BigInteger.ONE
 
@@ -48,7 +47,7 @@ val big_fibonacci = buildSequence {
  *
  * _Reference: [http://mathworld.wolfram.com/TriangularNumber.html]_
  */
-val triangles = buildSequence {
+val triangles = sequence {
     var index = 1L
     var current = 0L
     while (true) {
@@ -64,7 +63,7 @@ val triangles = buildSequence {
  *
  * @return a sequence containing elements computed from the Collatz problem
  */
-fun Long.collatzSequence() = buildSequence {
+fun Long.collatzSequence() = sequence {
     var current = this@collatzSequence
     while (current != 1L) {
         yield(current)
