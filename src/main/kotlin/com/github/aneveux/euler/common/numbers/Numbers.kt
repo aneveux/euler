@@ -71,11 +71,11 @@ fun BigInteger.digits() = this.toString().map(Char::toIntValue)
  *
  * @return a List containing all circular numbers of the receiver's digits
  */
-fun Long.circularNumbers() = this.digits().let { digits ->
+fun Long.circularNumbers(): VList<Long> = this.digits().let { digits ->
     VList.ofAll(digits.replicate(2).flatten())
             .sliding(digits.size)
             .toList()
-            .map { it.joinToString(postfix = "", prefix = "", separator = "") { "$it" } }
+            .map { it -> it.joinToString(postfix = "", prefix = "", separator = "") { "$it" } }
             .map { it.toLong() }
             .removeAll(this)
 }
@@ -87,4 +87,4 @@ fun Long.circularNumbers() = this.digits().let { digits ->
  *
  * @return the receiver number in base 2
  */
-fun Long.toBinary() = Integer.toBinaryString(this.toInt())
+fun Long.toBinary(): String = Integer.toBinaryString(this.toInt())

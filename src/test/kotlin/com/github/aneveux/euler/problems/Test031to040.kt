@@ -4,7 +4,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 class TestProblem31 {
-    val problem = Problem31()
+    private val problem = Problem31()
 
     @Test
     fun testCombinations() {
@@ -29,7 +29,7 @@ class TestProblem31 {
 }
 
 class TestProblem32 {
-    val problem = Problem32()
+    private val problem = Problem32()
 
     @Test
     fun testProblem32Solution() {
@@ -38,7 +38,7 @@ class TestProblem32 {
 }
 
 class TestProblem33 {
-    val problem = Problem33()
+    private val problem = Problem33()
 
     @Test
     fun testProblem33Solution() {
@@ -47,7 +47,7 @@ class TestProblem33 {
 }
 
 class TestProblem34 {
-    val problem = Problem34()
+    private val problem = Problem34()
 
     @Test
     fun testHasFactorialDigits() {
@@ -65,7 +65,7 @@ class TestProblem34 {
 }
 
 class TestProblem35 {
-    val problem = Problem35()
+    private val problem = Problem35()
 
     @Test
     fun testProblem35Solution() {
@@ -74,7 +74,7 @@ class TestProblem35 {
 }
 
 class TestProblem36 {
-    val problem = Problem36()
+    private val problem = Problem36()
 
     @Test
     fun testProblem36Solution() {

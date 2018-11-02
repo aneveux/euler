@@ -7,7 +7,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 class TestProblem21 {
-    val problem = Problem21()
+    private val problem = Problem21()
 
     @Test
     fun testProblem21Solution() {
@@ -16,7 +16,7 @@ class TestProblem21 {
 }
 
 class TestProblem22 {
-    val problem = Problem22()
+    private val problem = Problem22()
 
     @Test
     fun testStringScore() {
@@ -40,7 +40,7 @@ class TestProblem22 {
 }
 
 class TestProblem23 {
-    val problem = Problem23()
+    private val problem = Problem23()
 
     @Test
     fun testFilterAbundantNumbers() {
@@ -56,7 +56,7 @@ class TestProblem23 {
 }
 
 class TestProblem24 {
-    val problem = Problem24()
+    private val problem = Problem24()
 
     @Test
     fun testComputePermutations() {
@@ -72,7 +72,7 @@ class TestProblem24 {
 }
 
 class TestProblem25 {
-    val problem = Problem25()
+    private val problem = Problem25()
 
     @Test
     fun testProblem25Solution() {
@@ -81,7 +81,7 @@ class TestProblem25 {
 }
 
 class TestProblem26 {
-    val problem = Problem26()
+    private val problem = Problem26()
 
     @Test
     fun testMultiplicativeOrder() {
@@ -105,7 +105,7 @@ class TestProblem26 {
 }
 
 class TestProblem27 {
-    val problem = Problem27()
+    private val problem = Problem27()
 
     @Test
     fun testProblem27Solution() {
@@ -114,13 +114,11 @@ class TestProblem27 {
 }
 
 class TestProblem28 {
-    val problem = Problem28()
+    private val problem = Problem28()
 
     @Test
     fun testProblem28Example() {
-        with(problem) {
-            assertThat(problem.spiralSum(5)).isEqualTo(101L)
-        }
+        assertThat(problem.spiralSum(5)).isEqualTo(101L)
     }
 
     @Test
@@ -130,7 +128,7 @@ class TestProblem28 {
 }
 
 class TestProblem29 {
-    val problem = Problem29()
+    private val problem = Problem29()
 
     @Test
     fun testProblem29Example() {
@@ -148,13 +146,11 @@ class TestProblem29 {
 }
 
 class TestProblem30 {
-    val problem = Problem30()
+    private val problem = Problem30()
 
     @Test
     fun testDigits() {
-        with(problem) {
-            assertThat(12345L.digits()).containsExactly(1, 2, 3, 4, 5)
-        }
+        assertThat(12345L.digits()).containsExactly(1, 2, 3, 4, 5)
     }
 
     @Test

@@ -169,7 +169,7 @@ class Problem29 : Problem() {
 class Problem30 : Problem() {
     private val powersOf5 = listOf(0L, 1, 32, 243, 1_024, 3_125, 7_776, 16_807, 32_768, 59_049)
 
-    fun Long.sumDigitsPowersOf5() = this.digits().map { powersOf5[it.toInt()] }.sum()
+    fun Long.sumDigitsPowersOf5() = this.digits().map { powersOf5[it] }.sum()
 
     override fun solve() = Stream.range(2, 9L.pow(5) * 5)
             .filter { it == it.sumDigitsPowersOf5() }.sum().toString()

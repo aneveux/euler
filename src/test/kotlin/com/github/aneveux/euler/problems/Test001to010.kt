@@ -5,7 +5,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 class TestProblem1 {
-    val problem = Problem1()
+    private val problem = Problem1()
 
     @Test
     fun testProblem1Example() {
@@ -19,7 +19,7 @@ class TestProblem1 {
 }
 
 class TestProblem2 {
-    val problem = Problem2()
+    private val problem = Problem2()
 
     @Test
     fun testProblem2Solution() {
@@ -28,7 +28,7 @@ class TestProblem2 {
 }
 
 class TestProblem3 {
-    val problem = Problem3()
+    private val problem = Problem3()
 
     @Test
     fun testProblem3Solution() {
@@ -37,7 +37,7 @@ class TestProblem3 {
 }
 
 class TestProblem4 {
-    val problem = Problem4()
+    private val problem = Problem4()
 
     @Test
     fun testProblem4Example() {
@@ -51,7 +51,7 @@ class TestProblem4 {
 }
 
 class TestProblem5 {
-    val problem = Problem5()
+    private val problem = Problem5()
 
     @Test
     fun testProblem5Solution() {
@@ -60,7 +60,7 @@ class TestProblem5 {
 }
 
 class TestProblem6 {
-    val problem = Problem6()
+    private val problem = Problem6()
 
     @Test
     fun testProblem6Example() {
@@ -74,7 +74,7 @@ class TestProblem6 {
 }
 
 class TestProblem7 {
-    val problem = Problem7()
+    private val problem = Problem7()
 
     @Test
     fun testProblem7Example() {
@@ -88,7 +88,7 @@ class TestProblem7 {
 }
 
 class TestProblem8 {
-    val problem = Problem8()
+    private val problem = Problem8()
 
     @Test
     fun testProblem8Example() {
@@ -102,7 +102,7 @@ class TestProblem8 {
 }
 
 class TestProblem9 {
-    val problem = Problem9()
+    private val problem = Problem9()
 
     @Test
     fun testProblem9Solution() {
@@ -111,7 +111,7 @@ class TestProblem9 {
 }
 
 class TestProblem10 {
-    val problem = Problem10()
+    private val problem = Problem10()
 
     @Test
     fun testProblem10Solution() {

@@ -6,7 +6,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 class TestProblem11 {
-    val problem = Problem11()
+    private val problem = Problem11()
 
     @Test
     fun testProblem11Solution() {
@@ -15,7 +15,7 @@ class TestProblem11 {
 }
 
 class TestProblem12 {
-    val problem = Problem12()
+    private val problem = Problem12()
 
     @Test
     fun testProblem12Solution() {
@@ -24,7 +24,7 @@ class TestProblem12 {
 }
 
 class TestProblem13 {
-    val problem = Problem13()
+    private val problem = Problem13()
 
     @Test
     fun testProblem13Solution() {
@@ -33,7 +33,7 @@ class TestProblem13 {
 }
 
 class TestProblem14 {
-    val problem = Problem14()
+    private val problem = Problem14()
 
     @Test
     fun testProblem14Solution() {
@@ -42,7 +42,7 @@ class TestProblem14 {
 }
 
 class TestProblem15 {
-    val problem = Problem15()
+    private val problem = Problem15()
 
     @Test
     fun testLatticePathExample() {
@@ -56,7 +56,7 @@ class TestProblem15 {
 }
 
 class TestProblem16 {
-    val problem = Problem16()
+    private val problem = Problem16()
 
     @Test
     fun testProblem16Example() {
@@ -70,7 +70,7 @@ class TestProblem16 {
 }
 
 class TestProblem17 {
-    val problem = Problem17()
+    private val problem = Problem17()
 
     @Test
     fun testProblem17Example() {
@@ -84,7 +84,7 @@ class TestProblem17 {
 }
 
 class TestProblem18 {
-    val problem = Problem18()
+    private val problem = Problem18()
 
     @Test
     fun testProblem18Solution() {
@@ -93,7 +93,7 @@ class TestProblem18 {
 }
 
 class TestProblem19 {
-    val problem = Problem19()
+    private val problem = Problem19()
 
     @Test
     fun testProblem19Solution() {
@@ -102,7 +102,7 @@ class TestProblem19 {
 }
 
 class TestProblem20 {
-    val problem = Problem20()
+    private val problem = Problem20()
 
     @Test
     fun testProblem20Example() {
