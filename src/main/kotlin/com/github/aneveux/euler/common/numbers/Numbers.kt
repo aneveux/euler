@@ -1,6 +1,7 @@
 package com.github.aneveux.euler.common.numbers
 
 import com.github.aneveux.euler.common.sequences.replicate
+import org.funktionale.collections.tail
 import java.math.BigInteger
 import io.vavr.collection.List as VList
 
@@ -88,3 +89,14 @@ fun Long.circularNumbers(): VList<Long> = this.digits().let { digits ->
  * @return the receiver number in base 2
  */
 fun Long.toBinary(): String = Integer.toBinaryString(this.toInt())
+
+/**
+ * Returns a Long out of all the digits from a List.
+ *
+ * Example: `[1,2,3] becomes 123L`
+ *
+ * @return a number representation of all the digits from a List
+ */
+fun List<Int>.asNumber() = if (size == 0) 0L else joinToString(postfix = "",
+                                                               prefix = "",
+                                                               separator = "") { "$it" }.toLong()

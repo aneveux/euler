@@ -5,6 +5,7 @@ import com.github.aneveux.euler.common.helpers.component1
 import com.github.aneveux.euler.common.helpers.component2
 import com.github.aneveux.euler.common.helpers.component3
 import com.github.aneveux.euler.common.numbers.*
+import com.github.aneveux.euler.common.sequences.primes
 import io.vavr.Tuple3
 import io.vavr.collection.Stream
 
@@ -104,4 +105,16 @@ class Problem35 : Problem() {
 class Problem36 : Problem() {
     override fun solve() = Stream.range(1L, 1_000_000).filter { it.isDoubleBasePalindromic() }
             .sum().toString()
+}
+
+/**
+ * Solving [https://projecteuler.net/problem=37]
+ *
+ * > Find the sum of the only eleven primes that are both truncatable from left to right and right to left.
+ *
+ */
+class Problem37 : Problem() {
+    override fun solve() = primes.map { it.toLong() }.takeWhile { it < 1_000_000L }
+            .filter { it.isTruncatablePrime() }
+            .take(11).sum().toString()
 }

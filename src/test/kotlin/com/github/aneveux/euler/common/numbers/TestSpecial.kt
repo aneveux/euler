@@ -89,4 +89,23 @@ class TestSpecial {
         assertThat(585L.isDoubleBasePalindromic()).isTrue()
         assertThat(584L.isDoubleBasePalindromic()).isFalse()
     }
+
+    @Test
+    fun testIsLeftTruncatablePrime() {
+        assertThat(3797L.isLeftTruncatablePrime()).isTrue()
+        assertThat(3787L.isLeftTruncatablePrime()).isFalse()
+    }
+
+    @Test
+    fun testIsRightTruncatablePrime() {
+        assertThat(3797L.isRightTruncatablePrime()).isTrue()
+        assertThat(3787L.isRightTruncatablePrime()).isFalse()
+    }
+
+    @Test
+    fun testIsTruncatablePrime() {
+        assertThat(3797L.isTruncatablePrime()).isTrue()
+        assertThat(3787L.isTruncatablePrime()).isFalse()
+        assertThat(7L.isTruncatablePrime()).isFalse()
+    }
 }

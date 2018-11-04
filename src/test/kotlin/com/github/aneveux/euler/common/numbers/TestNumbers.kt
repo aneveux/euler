@@ -36,4 +36,11 @@ class TestNumbers {
         assertThat(3L.toBinary()).isEqualTo("11")
         assertThat(4L.toBinary()).isEqualTo("100")
     }
+
+    @Test
+    fun testListAsNumber() {
+        assertThat(listOf(1,2,3,4,5).asNumber()).isEqualTo(12345L)
+        assertThat(listOf(1).asNumber()).isEqualTo(1L)
+        assertThat(listOf(0,0,0,1).asNumber()).isEqualTo(1L)
+    }
 }

@@ -7,6 +7,7 @@ import io.vavr.Tuple3
 import io.vavr.control.Option
 import io.vavr.control.Option.none
 import io.vavr.control.Option.some
+import org.funktionale.collections.tail
 
 /**
  * Checks if a receiver String is palindromic _(eg. same when written forwards or backwards)_.
@@ -151,9 +152,9 @@ fun Long.nextCollatz() = when {
 fun Long.isCircularPrime() = when {
     this < 10L -> this.isPrime()
     !this.isPrime() -> false
-// First check for filtering: if it contains an even number, it won't be a circular prime.
-// Then we compute the circular numbers and check for primes.
-// Could be enhanced with some cache probably.
+    // First check for filtering: if it contains an even number, it won't be a circular prime.
+    // Then we compute the circular numbers and check for primes.
+    // Could be enhanced with some cache probably.
     else -> this.digits().all { it.isOdd() } && this.circularNumbers().all { it.isPrime() }
 }
 
@@ -165,3 +166,26 @@ fun Long.isCircularPrime() = when {
  * @return true if the receiver number is palindromic in base 10 and base 2
  */
 fun Long.isDoubleBasePalindromic() = this.isPalindromic() && this.toBinary().isPalindromic()
+
+/**
+ * Checks if the receiver number is a left truncatable prime. Which means it is a prime and each number resulting of a
+ * left truncation of it is prime as well.
+ *
+ * @return true if the receiver number is a left truncatable prime
+ */
+fun Long.isLeftTruncatablePrime(): Boolean = this.isPrime() && if (this > 10L) this.digits().tail().asNumber().isLeftTruncatablePrime() else true
+
+/**
+ * Checks if the receiver number is a right truncatable prime. Which means it is a prime and each number resulting of a
+ * right truncation of it is prime as well.
+ *
+ * @return true if the receiver number is a right truncatable prime
+ */
+fun Long.isRightTruncatablePrime(): Boolean = this.isPrime() && if (this > 10L) this.digits().dropLast(1).asNumber().isRightTruncatablePrime() else true
+
+/**
+ * Checks if the receiver number is a truncatable prime. Which means it is both left and right truncatable, and it is higher than 7.
+ *
+ * @return true if the receiver number is a truncatable prime
+ */
+fun Long.isTruncatablePrime() = this > 7L && this.isLeftTruncatablePrime() && this.isRightTruncatablePrime()
